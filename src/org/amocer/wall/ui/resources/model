@@ -1,0 +1,58 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{times}
+\usepackage[cyr]{aeguill}
+\usepackage[french]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,graphicx,caption,subcaption}
+\usepackage[total={21cm,29.7cm}, top=2.5cm, bottom =2.5cm, left=2.5cm, right=2.0cm]{geometry}
+\setlength{\parindent}{0pt}
+\begin{document}
+\begin{center}
+\includegraphics[width=0.3 \textwidth]{logo-socramat.png} \\
+\textsc{\Large }\\[1.0cm]
+\huge \bfseries Note de calcul\\[0.5cm]
+Mur de soutènement renforcé par des fibres métalliques  \\
+\end{center}
+\section{Donées}
+\subsection{Géométrie}
+Longeur du mur : ##LONGUEUR##m\\
+Hauteur total du mur ##HAUTEUR##m\\
+Largeur du mur ##LARGEUR##m\\
+\subsection{Matériaux}
+Classe du béton :\\
+\section{Vérifications de structure - ELU}
+\subsection{Talon}
+Moment résistant:\\
+Moment agissant : \\
+\subsection{Rideau}
+Moment résistant:\\
+Moment agissant :\\
+\section{Vérification de la portance du sol}
+\subsection{ELU}
+Effort
+\subsection{ELS - Quasi permanent}
+
+
+\subsection{ELS - Caractéristique}
+
+\section{Vérification du glissement}
+\subsection{ELU}
+
+\subsection{ELS - Quasi permanent}
+
+
+\subsection{ELS - Caractéristique}
+
+
+\section{Vérification de l'excentricité (non basculement)}
+\subsection{ELU}
+
+\subsection{ELS - Quasi permanent}
+
+
+\subsection{ELS - Caractéristique}
+
+
+
+\section{Ferraillage}
+\end{document}

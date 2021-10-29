@@ -1,0 +1,8 @@
+.choice-box > .label{
+    -fx-alignment:center;
+}
+
+
+.column.table-cell {
+    -fx-background-color: red;
+}
