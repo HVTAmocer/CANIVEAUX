@@ -1,0 +1,54 @@
+CONTRAT DE LICENCE D’UTILISATION DE LOGICIEL
+
+Le présent accord est un CONTRAT DE LICENCE D’UTILISATION DE LOGICIEL, (« Contrat de licence d’utilisation de logiciel ») qui définit les conditions dans lesquelles la société AMODIS attribue au client (« Client ») un droit d’utilisation de ses logiciels.
+Le Contrat de licence d’utilisation de logiciel doit être obligatoirement validé par le Client pour le bon déroulement de la procédure d’installation. Le Client accepte expressément le fait que la validation du présent contrat signifie qu’il accepte les conditions de la société AMODIS et que cette validation a valeur de preuve de cette acceptation à son égard.
+
+PREAMBULE :
+La société AMODIS est un bureau d’étude spécialisé dans la Recherche et le Développement.
+L’expertise de la société AMODIS est liée à la résistance des matériaux ainsi qu’à l’étude des matériaux innovants tels que le béton fibré.
+Pour ce faire, la société AMODIS développe des logiciels qui sont des outils de calcul pour répondre aux problèmes techniques des ingénieurs de la construction.
+La société AMODIS est propriétaire de ses logiciels, qu’elle est habilitée à diffuser.
+
+IL EST CONVENU CE QUI SUIT :
+1.	Définitions
+Dans le présent accord, les termes suivants ont la signification suivante lorsqu'ils sont écrits en majuscules :
+1.1.	Le terme « Contrat de licence d’utilisation de logiciel » désigne le présent accord, y compris toutes les annexes qui y figurent.
+1.2.	 Le terme « Produit » signifie le logiciel conçu par la société AMODIS qui permet de générer des notes de calcul sur des éléments en béton structurel, ou non, respectant les normes préalablement définies par le Client.
+1.3.	 Le terme « Utilisation » signifie la mise en œuvre du Produit par le Client, à savoir le fait d’exploiter pour traitement le Produit par le biais d’un ordinateur et de ses périphéries associées.
+
+2.	Objet du présent contrat
+2.1.	 La société AMODIS concède au Client qui l’accepte, un droit non exclusif et non transmissible d’Utilisation (tel que défini ci-dessus dans l’article 1.3) de l’outil de calcul acquis à partir du paiement qui a été fixé dans le devis.
+2.2.	 Le paiement ne couvre pas l’acquisition automatique des nouvelles versions du logiciel dont le Client peut s’assurer les droits d’Utilisation par des nouvelles commandes directement effectuées auprès de la société AMODIS.
+
+3.	Obligation des parties
+3.1.	 La société AMODIS, au titre du présent contrat, s’engage à fournir au Client le Produit (tel que défini ci-dessus dans l’article 1.2) conforme au cahier des charges préalablement défini lors de la signature du devis.
+3.2.	 Le Client s’interdit de dupliquer, concéder et mettre à disposition le Produit sur un réseau quel qu’il soit à l’exception des réseaux internes de l’établissement.
+3.3.	Le Client s’engage à prendre toutes les mesures pour éviter une divulgation des spécifications des logiciels et, le cas échéant de ses documentations, de nature à porter atteinte aux droits de la société AMODIS.
+3.4.	 Seul le Client pourra utiliser les logiciels, en aucun cas il ne pourra en concéder l’Utilisation, même gratuitement, à une tierce personne.
+3.5.	 Lorsque le Client souhaite qu’une entité avec laquelle il a, soit des liens organiques et/ ou fonctionnels, soit des liens capitalistiques puisse bénéficier d’une autorisation d’Utilisation, il doit en faire la demande par écrit à la société AMODIS qui proposera alors un contrat de licence d’Utilisation à la tierce personne.
+
+4.	Droit de propriété
+4.1.	 Le logiciel, sa structure, son organisation, ses interfaces, ses bases de données et, le cas échéant ses manuels et ses documents, ainsi que tous les droits de propriété intellectuelle sont de la propriété exclusive de la société AMODIS.
+4.2.	En aucun cas l’acceptation du présent Contrat ne saurait entrainer au profit du Client une quelconque cession des droits de propriété intellectuelle détenus par la société AMODIS sur ses outils de calcul, ses bases de données et, le cas échéant ses manuels et documents.
+
+5.	 Responsabilités
+5.1.	 Il appartient au Client de prendre les dispositions nécessaires permettant une Utilisation satisfaisante du Produit.
+5.2.	 Les résultats des org.amocer.wall.calculs obtenus par le logiciel de calcul sont fonction des données que le Client est amené à traiter. Il appartient au Client de vérifier cas par cas l’exactitude desdites données. Le Client est également tenu de vérifier si pour un problème donné, le logiciel s’avère le moyen le plus adapté pour effectuer un calcul et si les résultats des org.amocer.wall.calculs sont compatibles techniquement avec son projet.
+5.3.	Les méthodes mathématiques mises en œuvre pour effectuer les org.amocer.wall.calculs sont des méthodes reconnues qui ont été retenues par la société AMODIS car elles sont les plus adaptées à la résolution des problèmes posés ainsi qu’à leur traitement informatique.
+5.4.	La documentation technique, le cas échéant divulguée par la société AMODIS, donne les informations nécessaires pour permettre de comprendre le mode de traitement des données. Dans le cas où les informations ne sont pas aussi complètes que le souhaite le Client, ce dernier pourra interroger les services de la société AMODIS qui lui donneront toutes les informations nécessaires.
+5.5.	Il est rappelé que les méthodes de calcul peuvent différer ainsi que les résultats. Le logiciel n’est qu’un outil permettant de faciliter le travail. Le logiciel est conçu pour aider le Client. La société AMODIS ne saurait être tenue pour responsable vis-à-vis du Client d’une anomalie du logiciel qui serait dû à une modification quelconque de celui-ci par le Client.
+
+6.	Résultats générés par le logiciel
+6.1.	Le Client est seul responsable des résultats issus du programme informatique du logiciel. Le bon fonctionnement du programme dépend des prescriptions préalables d’utilisation de la société AMODIS, et des normes légales applicables à chaque cas d’étude. Dans ce contexte, la société AMODIS n’assume aucune responsabilité quant aux résultats des org.amocer.wall.calculs effectués.
+
+7.	Garantie
+7.1.	Le logiciel est fourni en l’état et la société AMODIS ne peut garantir l’absence d’anomalies résiduelles. En cas de constatation d’anomalie, le Client devra en avertir immédiatement la société AMODIS en lui fournissant tous les éléments lui permettant d’en déceler l’origine.
+
+8.	Dispositions générales
+8.1.	Les termes et conditions du présent contrat annulent et remplacent ceux de tous engagements éventuels antérieurs pris entre le Client et la société AMODIS concernant le Produit.
+8.2.	Les signataires du présent contrat reconnaissent être habilités aux fins des présentes.
+8.3.	La société AMODIS ne saurait être tenue pour responsable vis-à-vis du Client pour la non-exécution de ses obligations ou les retards dans l’exécution du présent contrat qui serait dû à la survenance d’un cas de force majeure.
+
+9.	Droit applicable et règlement des litiges
+9.1.	Le présent contrat est régi par le droit français.
+9.2.	En cas de difficultés rencontrées quant à l’interprétation, la validité et/ou l’exécution du présent contrat, la partie la plus diligente saisit sa cocontractante de ladite difficulté par lettre recommandée avec AR en vue d’un règlement amiable. À défaut d’un tel règlement dans un délai d’un (1) mois de la réception de la lettre recommandée avec AR, les juridictions françaises sont les seules habilités à trancher le litige.
