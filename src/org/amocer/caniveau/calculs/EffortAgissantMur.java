@@ -1,18 +1,18 @@
-package org.amocer.wall.calculs;
+package org.amocer.caniveau.calculs;
 
-public class EffortAgissant {
+public class EffortAgissantMur {
     public final double mEd, vEd, nEd;
 
-    private EffortAgissant(double mEd, double vEd, double nEd) {
+    private EffortAgissantMur(double mEd, double vEd, double nEd) {
         this.mEd = mEd;
         this.vEd = vEd;
         this.nEd = nEd;
     }
 
-    public static EffortAgissant effortRideau(double poidsVolumiqueBeton, double poidsVolumiqueSol, double phi, double delta,
-                                              double LongeurMur, double hTotal, double lTotal, double eRideauBas, double eRideauHaut, double eTalon, double beta, double hTN,
-                                              double chargeUniforme, double dP, double chargePontuelle, double dF,
-                                              CalculateurDeMursDeSoutainement.Combinaison combinaison) {
+    public static EffortAgissantMur effortRideau(double poidsVolumiqueBeton, double poidsVolumiqueSol, double phi, double delta,
+                                                 double LongeurMur, double hTotal, double lTotal, double eRideauBas, double eRideauHaut, double eTalon, double beta, double hTN,
+                                                 double chargeUniforme, double dP, double chargePontuelle, double dF,
+                                                 Combinaison combinaison) {
         // Coefficients de poussée
         double hRideau = hTotal - eTalon;
         double lTalon = lTotal - eRideauBas;
@@ -75,13 +75,13 @@ public class EffortAgissant {
         double MEdRideau = MEdPermanent*combinaison.gammaG + MEdExploitation*combinaison.gammaQ;
         double VEdRideau = VEdPermanent*combinaison.gammaG + VEdExploitation*combinaison.gammaQ;
         double NEdRideau = NEdPermanent*combinaison.gammaG + NEdExploitation*combinaison.gammaQ;
-        return new EffortAgissant(MEdRideau,VEdRideau, NEdRideau);
+        return new EffortAgissantMur(MEdRideau,VEdRideau, NEdRideau);
     }
 
-    public static EffortAgissant effortTalon(double poidsVolumiqueBeton, double poidsVolumiqueSol, double phi, double delta,
-                                             double LongeurMur, double hTotal, double lTotal, double eRideauBas, double eRideauHaut, double eTalon, double beta, double hTN,
-                                             double chargeUniforme, double dP, double chargePontuelle, double dF,
-                                             CalculateurDeMursDeSoutainement.Combinaison combinaison) {
+    public static EffortAgissantMur effortTalon(double poidsVolumiqueBeton, double poidsVolumiqueSol, double phi, double delta,
+                                                double LongeurMur, double hTotal, double lTotal, double eRideauBas, double eRideauHaut, double eTalon, double beta, double hTN,
+                                                double chargeUniforme, double dP, double chargePontuelle, double dF,
+                                                Combinaison combinaison) {
         double hRideau = hTotal - eTalon;
         double lTalon = lTotal - eRideauBas;
         double rhoS = poidsVolumiqueSol/100; //KN
@@ -113,11 +113,11 @@ public class EffortAgissant {
         double NEdExploitation = (p7+p8)*lTalon;
 
 
-        double MEdTalon = EffortAgissant.effortRideau( poidsVolumiqueBeton,  poidsVolumiqueSol,  phi,  delta, LongeurMur,  hTotal,  lTotal,  eRideauBas,  eRideauHaut,  eTalon,  beta,  hTN, chargeUniforme,  dP,  chargePontuelle,  dF, combinaison).mEd;
+        double MEdTalon = EffortAgissantMur.effortRideau( poidsVolumiqueBeton,  poidsVolumiqueSol,  phi,  delta, LongeurMur,  hTotal,  lTotal,  eRideauBas,  eRideauHaut,  eTalon,  beta,  hTN, chargeUniforme,  dP,  chargePontuelle,  dF, combinaison).mEd;
         double VEdTalon = VEdPermanent*combinaison.gammaG + VEdExploitation*combinaison.gammaQ;
         double NEdTalon = NEdPermanent*combinaison.gammaG + NEdExploitation*combinaison.gammaQ ;
 
 
-        return new EffortAgissant(MEdTalon,VEdTalon, NEdTalon);
+        return new EffortAgissantMur(MEdTalon,VEdTalon, NEdTalon);
     }
 }

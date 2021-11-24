@@ -1,13 +1,7 @@
-package org.amocer.wall.ndc;
-
-import org.amocer.wall.calculs.CalculateurDeMursDeSoutainement;
-import org.amocer.wall.calculs.EffortAgissant;
-
-import java.text.DecimalFormat;
-import java.util.List;
+package org.amocer.caniveau.ndc;
 
 public class DonneesNDC {
-    private final String conclusionNDC;
+  /*  private final String conclusionNDC;
     private final String conclusionNDCcolor;
     private final String longueurDuMur;
     private final String largeurDuMur;
@@ -75,7 +69,7 @@ public class DonneesNDC {
 
 
     public DonneesNDC(CalculateurDeMursDeSoutainement calculateurDeMursDeSoutainement) {
-        CalculateurDeMursDeSoutainement.Donnees donnees = calculateurDeMursDeSoutainement.donnees;
+        Donnees donnees = calculateurDeMursDeSoutainement.donnees;
         CalculateurDeMursDeSoutainement.ResultatDuDimensionnement resultatDuDimensionnement = calculateurDeMursDeSoutainement.resultat();
         List<CalculateurDeMursDeSoutainement.ResultatDuCalcul> resultatDuCalculs = calculateurDeMursDeSoutainement.calculer();
         DecimalFormat df = new DecimalFormat("0.00");
@@ -86,7 +80,7 @@ public class DonneesNDC {
         this.epaisseurHauteRideau = df.format(donnees.epaisseurHautRideau);
         this.epaisseurBaseRideau = df.format(donnees.epaisseurBasRideau);
         this.epaisseurTalon = df.format(donnees.epaisseurTalon);
-        this.hauteurTalus = df.format(donnees.hauteurTalus);
+        this.hauteurTalus = df.format(donnees.hauteurRemblai);
         this.angleTalus = df.format(donnees.angleTalus);
         this.typeAncrage = donnees.typeAncrage;
         this.nombreAncrages = entier.format(donnees.nombreAncrages);
@@ -121,60 +115,60 @@ public class DonneesNDC {
 
         this.momentResistantRideau = df.format(calculateurDeMursDeSoutainement.momentResistantRideau(resultatDuDimensionnement));
         this.momentResistantTalon = df.format(calculateurDeMursDeSoutainement.momentResistantTalon(resultatDuDimensionnement));
-        this.momentAgissantTalon = df.format(calculateurDeMursDeSoutainement.effortTalon(CalculateurDeMursDeSoutainement.Combinaison.ELU).mEd);
-        this.momentAgissantRideau = df.format(calculateurDeMursDeSoutainement.effortRideau(CalculateurDeMursDeSoutainement.Combinaison.ELU).mEd);
-        this.verificationFlexionTalon = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.FLEXION_TALON, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
-        this.verificationFlexionRideau = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.FLEXION_RIDEAU, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
+        this.momentAgissantTalon = df.format(calculateurDeMursDeSoutainement.effortTalon(Combinaison.ELU).mEd);
+        this.momentAgissantRideau = df.format(calculateurDeMursDeSoutainement.effortRideau(Combinaison.ELU).mEd);
+        this.verificationFlexionTalon = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.FLEXION_TALON, Combinaison.ELU, resultatDuCalculs);
+        this.verificationFlexionRideau = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.FLEXION_RIDEAU, Combinaison.ELU, resultatDuCalculs);
 
-        EffortAgissant effortRideauELU = calculateurDeMursDeSoutainement.effortRideau(CalculateurDeMursDeSoutainement.Combinaison.ELU);
-        EffortAgissant effortTalonELU = calculateurDeMursDeSoutainement.effortTalon(CalculateurDeMursDeSoutainement.Combinaison.ELU);
-        EffortAgissant effortRideauELSCAR = calculateurDeMursDeSoutainement.effortRideau(CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR);
-        EffortAgissant effortTalonELSCAR = calculateurDeMursDeSoutainement.effortTalon(CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR);
-        EffortAgissant effortRideauELSQP = calculateurDeMursDeSoutainement.effortRideau(CalculateurDeMursDeSoutainement.Combinaison.ELS_QP);
-        EffortAgissant effortTalonELSQP = calculateurDeMursDeSoutainement.effortTalon(CalculateurDeMursDeSoutainement.Combinaison.ELS_QP);
+        EffortAgissant effortRideauELU = calculateurDeMursDeSoutainement.effortRideau(Combinaison.ELU);
+        EffortAgissant effortTalonELU = calculateurDeMursDeSoutainement.effortTalon(Combinaison.ELU);
+        EffortAgissant effortRideauELSCAR = calculateurDeMursDeSoutainement.effortRideau(Combinaison.ELS_CAR);
+        EffortAgissant effortTalonELSCAR = calculateurDeMursDeSoutainement.effortTalon(Combinaison.ELS_CAR);
+        EffortAgissant effortRideauELSQP = calculateurDeMursDeSoutainement.effortRideau(Combinaison.ELS_QP);
+        EffortAgissant effortTalonELSQP = calculateurDeMursDeSoutainement.effortTalon(Combinaison.ELS_QP);
 
         this.effortGlissementELU = df.format(calculateurDeMursDeSoutainement.effortGlissement(effortRideauELU));
         this.effortGlissementELSCAR = df.format(calculateurDeMursDeSoutainement.effortGlissement(effortRideauELSCAR));
         this.effortGlissementELSQP = df.format(calculateurDeMursDeSoutainement.effortGlissement(effortRideauELSQP));
-        this.resistanceGlissementELU = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELU, effortTalonELU, CalculateurDeMursDeSoutainement.Combinaison.ELU));
-        this.resistanceGlissementELSCAR = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELSCAR, effortTalonELSCAR, CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR));
-        this.resistanceGlissementELSQP = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELSQP, effortTalonELSQP, CalculateurDeMursDeSoutainement.Combinaison.ELS_QP));
-        this.verificationGlissementELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
-        this.verificationGlissementELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR, resultatDuCalculs);
-        this.verificationGlissementELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, CalculateurDeMursDeSoutainement.Combinaison.ELS_QP, resultatDuCalculs);
+        this.resistanceGlissementELU = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELU, effortTalonELU, Combinaison.ELU));
+        this.resistanceGlissementELSCAR = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELSCAR, effortTalonELSCAR, Combinaison.ELS_CAR));
+        this.resistanceGlissementELSQP = df.format(calculateurDeMursDeSoutainement.resistanceGlissement(effortRideauELSQP, effortTalonELSQP, Combinaison.ELS_QP));
+        this.verificationGlissementELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, Combinaison.ELU, resultatDuCalculs);
+        this.verificationGlissementELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, Combinaison.ELS_CAR, resultatDuCalculs);
+        this.verificationGlissementELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.GLISSEMENT, Combinaison.ELS_QP, resultatDuCalculs);
 
         this.effortVerticalELU = df.format(calculateurDeMursDeSoutainement.efforVertical(effortRideauELU, effortTalonELU));
         this.effortVerticalELSCAR = df.format(calculateurDeMursDeSoutainement.efforVertical(effortRideauELSCAR, effortTalonELSCAR));
         this.effortVerticalELSQP = df.format(calculateurDeMursDeSoutainement.efforVertical(effortRideauELSQP, effortTalonELSQP));
         this.poidsDuSol = df.format(calculateurDeMursDeSoutainement.poidsDuSol());
-        this.capacitePortanceSolELU = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELU, effortTalonELU, CalculateurDeMursDeSoutainement.Combinaison.ELU));
-        this.capacitePortanceSolELSCAR = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELSCAR, effortTalonELSCAR, CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR));;
-        this.capacitePortanceSolELSQP = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELSQP, effortTalonELSQP, CalculateurDeMursDeSoutainement.Combinaison.ELS_QP));;
+        this.capacitePortanceSolELU = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELU, effortTalonELU, Combinaison.ELU));
+        this.capacitePortanceSolELSCAR = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELSCAR, effortTalonELSCAR, Combinaison.ELS_CAR));;
+        this.capacitePortanceSolELSQP = df.format(calculateurDeMursDeSoutainement.capacitePortanceSol(effortRideauELSQP, effortTalonELSQP, Combinaison.ELS_QP));;
 
-        this.verificationPortanceELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
-        this.verificationPortanceELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR, resultatDuCalculs);
-        this.verificationPortanceELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, CalculateurDeMursDeSoutainement.Combinaison.ELS_QP, resultatDuCalculs);
+        this.verificationPortanceELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, Combinaison.ELU, resultatDuCalculs);
+        this.verificationPortanceELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, Combinaison.ELS_CAR, resultatDuCalculs);
+        this.verificationPortanceELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.PORTANCE, Combinaison.ELS_QP, resultatDuCalculs);
 
 
         this.exentriciteELU = df.format(calculateurDeMursDeSoutainement.excentriciteDeCalcul(effortRideauELU, effortTalonELU));
         this.exentriciteELSCAR = df.format(calculateurDeMursDeSoutainement.excentriciteDeCalcul(effortRideauELSCAR, effortTalonELSCAR));
         this.exentriciteELSQP = df.format(calculateurDeMursDeSoutainement.excentriciteDeCalcul(effortRideauELSQP, effortTalonELSQP));
-        this.verificationExcentrementELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
-        this.verificationExcentrementELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, CalculateurDeMursDeSoutainement.Combinaison.ELS_CAR, resultatDuCalculs);
-        this.verificationExcentrementELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, CalculateurDeMursDeSoutainement.Combinaison.ELS_QP, resultatDuCalculs);
-        this.verificationExcentrementImportant = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT_IMPORTANT, CalculateurDeMursDeSoutainement.Combinaison.ELU, resultatDuCalculs);
+        this.verificationExcentrementELU = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, Combinaison.ELU, resultatDuCalculs);
+        this.verificationExcentrementELSCAR = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, Combinaison.ELS_CAR, resultatDuCalculs);
+        this.verificationExcentrementELSQP = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT, Combinaison.ELS_QP, resultatDuCalculs);
+        this.verificationExcentrementImportant = trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification.EXCENTREMENT_IMPORTANT, Combinaison.ELU, resultatDuCalculs);
 
         this.conclusionNDC = resultatDuDimensionnement.estOk?"Le mur de soutènement est bien dimensionné selon les hypotheses ci-dessus.":"Le mur n'est pas verifié.";
         this.conclusionNDCcolor = resultatDuDimensionnement.estOk?"lightgreen":"red";
 
     }
 
-    private String trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification typeDeVerification, CalculateurDeMursDeSoutainement.Combinaison combinaison, List<CalculateurDeMursDeSoutainement.ResultatDuCalcul> resultatDuCalculs) {
+    private String trouveResultat(CalculateurDeMursDeSoutainement.TypeDeVerification typeDeVerification, Combinaison combinaison, List<CalculateurDeMursDeSoutainement.ResultatDuCalcul> resultatDuCalculs) {
         String resultats = resultatDuCalculs.stream()
                 .filter(rdc->rdc.combinaison.equals(combinaison))
                 .filter(rdc->rdc.typeDeVerification.equals(typeDeVerification))
                 .map(rdc->rdc.message)
                 .findAny().orElse("Erreur");
         return resultats;
-    }
+    }*/
 }

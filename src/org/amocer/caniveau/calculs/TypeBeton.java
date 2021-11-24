@@ -1,4 +1,4 @@
-package org.amocer.wall.calculs;
+package org.amocer.caniveau.calculs;
 
 public enum TypeBeton {
     C20(20),

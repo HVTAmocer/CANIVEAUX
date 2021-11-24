@@ -1,4 +1,4 @@
-package org.amocer.wall.ui;
+package org.amocer.caniveau.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +29,7 @@ public class Main extends Application{
 
     private void demarrerProgrammePrincipal(Stage primaryStage) throws java.io.IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ui.fxml"));
-        primaryStage.setTitle("LOGICIEL CACTUS LWALL V0.5 - DEVELOPPE PAR AMOCER GROUP");
+        primaryStage.setTitle("CACTUS - CANIVEAU BETON FIBRE- DEVELOPPE PAR AMOCER GROUP");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         String css = this.getClass().getResource("application.css").toExternalForm();

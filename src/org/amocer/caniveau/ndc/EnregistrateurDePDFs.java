@@ -1,4 +1,4 @@
-package org.amocer.enregistrateurpdf;
+package org.amocer.caniveau.ndc;
 
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
@@ -10,7 +10,6 @@ import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,7 +17,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class EnregistrateurDePDFs {
     public static void enregistrerPDF(Object sampleDataContainer, File fichierSource, File fichierPDF, String balise) {

@@ -1,4 +1,4 @@
-package org.amocer.wall.ui;
+package org.amocer.caniveau.ui;
 
 import java.io.*;
 import java.net.InetAddress;

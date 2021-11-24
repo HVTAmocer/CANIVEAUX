@@ -1,4 +1,4 @@
-package org.amocer.wall.calculs;
+package org.amocer.caniveau.calculs;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class CalculateurDeMursDeSoutainement {
-    final double POIDS_VOLUMIQUE_BETON = 25.0; //KN/m3
+/*    final double POIDS_VOLUMIQUE_BETON = 25.0; //KN/m3
     final double ANGLE_FROTTEMENT_INTERFACE = 0.0;
 
     final double longeurMur;
@@ -22,10 +22,8 @@ public class CalculateurDeMursDeSoutainement {
     final double chargeUniforme;
     final double distanceChargeUniforme;
     final String nomBeton;
-    final double angleFrottementSol;
     final double poidsVolumiqueSol;
     final TypeFibre typeFibre;
-    final int diametreArmatures;
     final double resistanceSol;
     final TypeBeton typeBeton;
     public final Donnees donnees;
@@ -38,17 +36,14 @@ public class CalculateurDeMursDeSoutainement {
         this.epaisseurHautRideau = donnees.epaisseurHautRideau;
         this.epaisseurBasRideau = donnees.epaisseurBasRideau;
         this.epaisseurTalon = donnees.epaisseurTalon;
-        this.angleTalus = donnees.angleTalus;
-        this.hauteurTalus = donnees.hauteurTalus;
+        this.hauteurTalus = donnees.hauteurRemblai;
         this.chargePontuelle = donnees.chargePontuelle;
         this.distanceChargePontuelle = donnees.distanceChargePontuelle;
         this.chargeUniforme = donnees.chargeUniforme;
         this.distanceChargeUniforme = donnees.distanceChargeUniforme;
         this.nomBeton = donnees.nomBeton;
-        this.angleFrottementSol = donnees.angleFrottementSol;
         this.poidsVolumiqueSol = donnees.poidsVolumiqueSol;
         this.typeFibre = donnees.typeFibre;
-        this.diametreArmatures = donnees.diametreArmatures;
         this.resistanceSol = donnees.resistanceSol;
         typeBeton = TypeBeton.get(nomBeton);
     }
@@ -342,7 +337,7 @@ public class CalculateurDeMursDeSoutainement {
 
     private ResultatDuDimensionnement resultatDimensionnementRideau() {
         return dimensionner(epaisseurBasRideau, effortRideau(Combinaison.ELU));
-    }
+    }*/
 
     public static class ResultatDuCalcul {
         public final String message;
@@ -377,94 +372,8 @@ public class CalculateurDeMursDeSoutainement {
         }
     }
 
-    public enum Combinaison {
-        ELU("ELU", 1.35, 1.50, 1.40, 1.20, 1.0 / 15.0),
-        ELS_CAR("ELS CAR", 1.00, 1.00, 2.30, 1.20, 1.0 / 2.0),
-        ELS_QP("ELS QP", 1.00, 0.50, 2.30, 1.20, 2.0 / 3.0);
-
-        public final double gammaG, gammaQ;
-        public final double gammaR, gammaRd;
-        public final double excentriciteMax;
-        public final String nom;
-
-        Combinaison(String nom, double gammaG, double gammaQ, double gammaR, double gammaRd, double excentriciteMax) {
-            this.gammaG = gammaG;
-            this.gammaQ = gammaQ;
-            this.gammaR = gammaR;
-            this.gammaRd = gammaRd;
-            this.excentriciteMax = excentriciteMax;
-            this.nom = nom;
-        }
-    }
-
     public enum TypeDeVerification{
         STRUCTURE,PORTANCE,GLISSEMENT,EXCENTREMENT,EXCENTREMENT_IMPORTANT,EFFORT_TRANCHANT, FLEXION_TALON, FLEXION_RIDEAU
-    }
-
-    public static class Donnees {
-        public final double distanceChargeUniforme;
-        public final double chargeUniforme;
-        public final double chargePontuelle;
-        public final double epaisseurHautRideau;
-        public final double angleTalus;
-        public final double hauteurTalus;
-        public final double distanceChargePontuelle;
-        public final double epaisseurBasRideau;
-        public final double largeurMur;
-        public final double epaisseurTalon;
-        public final double longueurMur;
-        public final String nomBeton;
-        public final TypeFibre typeFibre;
-        public final double resistanceSol;
-        public final double poidsVolumiqueSol;
-        public final double angleFrottementSol;
-        public final double hauteurMur;
-        public final int diametreArmatures;
-        public final String typeAncrage;
-        public final int nombreAncrages;
-
-        public Donnees(
-                double distanceChargeUniforme,
-                double chargeUniforme,
-                double chargePontuelle,
-                double epaisseurHautRideau,
-                double angleTalus,
-                double hauteurTalus,
-                double distanceChargePontuelle,
-                double epaisseurBasRideau,
-                double largeurMur,
-                double epaisseurTalon,
-                double longueurMur,
-                String nomBeton,
-                String typeFibre,
-                double resistanceSol,
-                double poidsVolumiqueSol,
-                double angleFrottementSol,
-                double hauteurMur,
-                int diametreArmatures,
-                String typeAncrage,
-                int nombreAncrages) {
-            this.distanceChargeUniforme = distanceChargeUniforme;
-            this.chargeUniforme = chargeUniforme;
-            this.chargePontuelle = chargePontuelle;
-            this.epaisseurHautRideau = epaisseurHautRideau;
-            this.angleTalus = angleTalus;
-            this.hauteurTalus = hauteurTalus;
-            this.distanceChargePontuelle = distanceChargePontuelle;
-            this.epaisseurBasRideau = epaisseurBasRideau;
-            this.largeurMur = largeurMur;
-            this.epaisseurTalon = epaisseurTalon;
-            this.longueurMur = longueurMur;
-            this.nomBeton = nomBeton;
-            this.typeFibre = TypeFibre.getFibre(typeFibre, nomBeton);
-            this.resistanceSol = resistanceSol;
-            this.poidsVolumiqueSol = poidsVolumiqueSol;
-            this.angleFrottementSol = angleFrottementSol;
-            this.hauteurMur = hauteurMur;
-            this.diametreArmatures = diametreArmatures;
-            this.typeAncrage = typeAncrage;
-            this.nombreAncrages = nombreAncrages;
-        }
     }
 
     public static class ResultatDuDimensionnement {
@@ -484,7 +393,7 @@ public class CalculateurDeMursDeSoutainement {
             this.fonctionDeVerification = fonctionDeVerification;
         }
 
-        public static ResultatDuDimensionnement max(ResultatDuDimensionnement resultat1, ResultatDuDimensionnement resultat2) {
+/*        public static ResultatDuDimensionnement max(ResultatDuDimensionnement resultat1, ResultatDuDimensionnement resultat2) {
             boolean estOk = resultat1.estOk && resultat2.estOk;
             int dosage;
             int nombreDeBarres;
@@ -520,6 +429,6 @@ public class CalculateurDeMursDeSoutainement {
             }
             if(resultat1.typeFibre!=resultat2.typeFibre)throw new IllegalStateException();
             return new ResultatDuDimensionnement(resultat1.typeFibre, dosage, nombreDeBarres, diametreDesBarres, estOk, null);
-        }
+        }*/
     }
 }

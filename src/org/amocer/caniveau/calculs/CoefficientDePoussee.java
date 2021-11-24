@@ -1,4 +1,4 @@
-package org.amocer.wall.calculs;
+package org.amocer.caniveau.calculs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
