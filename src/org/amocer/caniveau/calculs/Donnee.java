@@ -36,6 +36,7 @@ public class Donnee {
             String client,
 
             String typeFibre,
+            double poidsVolumiqueSol,
 
             String typeCaniveau,
             double longueur,
@@ -49,7 +50,6 @@ public class Donnee {
             double distanceChargeUniforme,
             double chargePontuelle,
             double distanceChargePontuelle,
-            double poidsVolumiqueSol,
             String typeChargeRoulante,
             double chargeRoulante,
             double poidsCouvercle) {
@@ -58,6 +58,7 @@ public class Donnee {
         this.client = client;
 
         this.typeFibre = typeFibre;
+        this.poidsVolumiqueSol = poidsVolumiqueSol;
 
         this.typeCaniveau = typeCaniveau;
         this.largeur = largeur;
@@ -74,6 +75,5 @@ public class Donnee {
         this.typeChargeRoulante = typeChargeRoulante;
         this.chargeRoulante = chargeRoulante;
         this.poidsCouvercle = poidsCouvercle;
-        this.poidsVolumiqueSol = poidsVolumiqueSol;
     }
 }

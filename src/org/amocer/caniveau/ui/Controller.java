@@ -58,7 +58,7 @@ public class Controller implements Initializable {
     private TextField chargePietonTextField;
 
     @FXML
-    private TextField araseTextField;
+    private TextField getHauteurRemblaiTextField;
     @FXML
     private Label resistanceSolLabel;
     @FXML
@@ -96,6 +96,7 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField hauteurRemblaiTextField;
+
 
 
     @Override

@@ -36,7 +36,7 @@
                 <Font size="22.0" />
             </font>
         </Label>
-        <Label layoutX="216.0" layoutY="312.0" text="kN/m²" />
+        <Label layoutX="216.0" layoutY="312.0" text="daN/m²" />
         <GridPane hgap="2.0" layoutX="901.0" layoutY="338.0" prefHeight="153.0" prefWidth="345.0" vgap="2.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="216.0" />
@@ -45,6 +45,7 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -54,17 +55,20 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Label>
-            <Label text="Angle de frottement mini" GridPane.rowIndex="1" />
-            <Label text="Résistance mini du béton (pour levage)" GridPane.rowIndex="3" />
-            <Label text="MPa" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label layoutX="280.0" layoutY="264.0" text="°" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label text="Résistance mini du sol qELS  " GridPane.rowIndex="2" />
-         <Label fx:id="resistanceSolLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label text="bars" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <Label fx:id="angleFrottementLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Label fx:id="resistanceMiniBetonLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Angle de frottement mini" GridPane.rowIndex="2" />
+            <Label text="Résistance mini du béton (pour levage)" GridPane.rowIndex="4" />
+            <Label text="MPa" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label layoutX="280.0" layoutY="264.0" text="°" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Résistance mini du sol qELS  " GridPane.rowIndex="3" />
+         <Label fx:id="resistanceSolLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Label text="bars" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         <Label fx:id="angleFrottementLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label fx:id="resistanceMiniBetonLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <Label text="Poids volumique du sol" GridPane.rowIndex="1" />
+         <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Label text="daN/m3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </GridPane>
-        <Label layoutX="128.0" layoutY="15.0" prefHeight="17.0" prefWidth="88.0" text="(Unité : kN, m, °)" />
+        <Label layoutX="128.0" layoutY="15.0" prefHeight="17.0" prefWidth="112.0" text="(Unité : daN, m, °)" />
       <GridPane hgap="2.0" layoutX="12.0" layoutY="-96.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="87.0" prefWidth="1242.0" vgap="2.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="125.0" />
@@ -125,7 +129,7 @@
       <ChoiceBox fx:id="typeCouvertureChoiceBox" layoutX="140.0" layoutY="204.0" prefWidth="102.0" />
       <Label layoutX="18.0" layoutY="208.0" prefHeight="17.0" prefWidth="123.0" text="Type de couvercle" />
       <Label layoutX="18.0" layoutY="422.0" prefHeight="17.0" prefWidth="123.0" text="Poids du couvercle" />
-      <Label layoutX="216.0" layoutY="363.0" text="kN" />
+      <Label layoutX="216.0" layoutY="363.0" text="daN" />
       <Label layoutX="18.0" layoutY="85.0" prefHeight="17.0" prefWidth="123.0" text="Longeur " />
       <Label layoutX="18.0" layoutY="115.0" prefHeight="17.0" prefWidth="123.0" text="Largeur" />
       <Label layoutX="18.0" layoutY="147.0" prefHeight="17.0" prefWidth="123.0" text="Hauteur" />
@@ -149,8 +153,8 @@
       <TextField fx:id="epaisseurCouvercleTextField" layoutX="141.0" layoutY="235.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
       <Label layoutX="216.0" layoutY="338.0" text="m" />
       <Label layoutX="217.0" layoutY="398.0" text="m" />
-      <Label layoutX="216.0" layoutY="428.0" text="kN/m²" />
-      <Label layoutX="216.0" layoutY="486.0" text="kN/m²" />
+      <Label layoutX="216.0" layoutY="428.0" text="daN/m²" />
+      <Label layoutX="216.0" layoutY="486.0" text="daN" />
       <Label layoutX="216.0" layoutY="248.0" text="m" />
       <Label layoutX="218.0" layoutY="179.0" text="m" />
       <Label layoutX="218.0" layoutY="155.0" text="m" />
