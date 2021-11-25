@@ -1,6 +1,6 @@
 package org.amocer.caniveau.calculs;
 
-public class EffortResistantMur {
+public class EffortResistant {
 
     public static double momentResistantELUBetonFibre(double epsCu,
                                                       double fcd, double fR1d, double fR3d,

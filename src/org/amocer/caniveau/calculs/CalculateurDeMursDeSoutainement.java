@@ -373,7 +373,14 @@ public class CalculateurDeMursDeSoutainement {
     }
 
     public enum TypeDeVerification{
-        STRUCTURE,PORTANCE,GLISSEMENT,EXCENTREMENT,EXCENTREMENT_IMPORTANT,EFFORT_TRANCHANT, FLEXION_TALON, FLEXION_RIDEAU
+        STRUCTURE,
+        PORTANCE,
+        GLISSEMENT,
+        EXCENTREMENT,
+        EXCENTREMENT_IMPORTANT,
+        EFFORT_TRANCHANT,
+        FLEXION_TALON,
+        FLEXION_RIDEAU
     }
 
     public static class ResultatDuDimensionnement {

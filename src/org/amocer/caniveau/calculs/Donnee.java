@@ -6,8 +6,9 @@ public class Donnee {
     public final String client;
 
     public final String typeFibre;
+    public final double poidsVolumiqueSol;
 
-    public final String typeCaniveau;
+    public final TypeCaniveau typeCaniveau;
     public final double longueur;
     public final double largeur;
     public final double hauteur;
@@ -27,7 +28,6 @@ public class Donnee {
 
     public final double poidsCouvercle;
 
-    public final double poidsVolumiqueSol;
 
 
     public Donnee(
@@ -38,7 +38,7 @@ public class Donnee {
             String typeFibre,
             double poidsVolumiqueSol,
 
-            String typeCaniveau,
+            TypeCaniveau typeCaniveau,
             double longueur,
             double largeur,
             double hauteur,

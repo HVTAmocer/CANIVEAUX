@@ -65,7 +65,7 @@
          <Label fx:id="angleFrottementLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <Label fx:id="resistanceMiniBetonLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          <Label text="Poids volumique du sol" GridPane.rowIndex="1" />
-         <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="1" text="1800" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          <Label text="daN/m3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         </GridPane>
         <Label layoutX="128.0" layoutY="15.0" prefHeight="17.0" prefWidth="112.0" text="(Unité : daN, m, °)" />
@@ -90,9 +90,9 @@
             <Label text="Chantier " GridPane.rowIndex="1" />
             <Label text="Client" GridPane.rowIndex="3" />
             <Label text="Localisation" GridPane.rowIndex="2" />
-            <TextField fx:id="chantierTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="localisationTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="81.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="clientTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="chantierTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="nom du chantier" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="localisationTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="81.0" promptText="Localisation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="clientTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="215.0" promptText="Client" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                <Label text="Type de la fibre" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                <ChoiceBox fx:id="typeFibreChoiceBox" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <HBox prefHeight="83.0" prefWidth="428.0" GridPane.columnIndex="7" GridPane.rowIndex="1" GridPane.rowSpan="3">
@@ -116,17 +116,17 @@
             </HBox>
          </children>
       </GridPane>
-      <TextField fx:id="longeurTextField" layoutX="140.0" layoutY="80.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="hauteurTextField" layoutX="140.0" layoutY="110.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="largeurTextField" layoutX="140.0" layoutY="142.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="chargePontuelleTextField" layoutX="139.0" layoutY="358.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="distanceChargePontuelleTextField" layoutX="141.0" layoutY="387.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="chargeUniformeTextField" layoutX="139.0" layoutY="299.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="distanceChargeUniformeTextField" layoutX="139.0" layoutY="330.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="hauteurRemblaiTextField" layoutX="140.0" layoutY="171.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="chargeRoulantTextField" layoutX="140.0" layoutY="478.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <TextField fx:id="poidsCouvercleTextField" layoutX="139.0" layoutY="417.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
-      <ChoiceBox fx:id="typeCouvertureChoiceBox" layoutX="140.0" layoutY="204.0" prefWidth="102.0" />
+      <TextField fx:id="longeurTextField" layoutX="140.0" layoutY="80.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10" />
+      <TextField fx:id="hauteurTextField" layoutX="140.0" layoutY="110.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
+      <TextField fx:id="largeurTextField" layoutX="140.0" layoutY="142.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
+      <TextField fx:id="chargePontuelleTextField" layoutX="139.0" layoutY="358.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10000" />
+      <TextField fx:id="distanceChargePontuelleTextField" layoutX="139.0" layoutY="387.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" />
+      <TextField fx:id="chargeUniformeTextField" layoutX="139.0" layoutY="300.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" />
+      <TextField fx:id="distanceChargeUniformeTextField" layoutX="139.0" layoutY="329.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.0" />
+      <TextField fx:id="hauteurRemblaiTextField" layoutX="140.0" layoutY="171.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
+      <TextField fx:id="chargeRoulantTextField" layoutX="140.0" layoutY="478.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="3000.0" />
+      <TextField fx:id="poidsCouvercleTextField" layoutX="139.0" layoutY="417.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="350.0" />
+      <ChoiceBox fx:id="typeCouvercleChoiceBox" layoutX="140.0" layoutY="204.0" prefWidth="102.0" />
       <Label layoutX="18.0" layoutY="208.0" prefHeight="17.0" prefWidth="123.0" text="Type de couvercle" />
       <Label layoutX="18.0" layoutY="422.0" prefHeight="17.0" prefWidth="123.0" text="Poids du couvercle" />
       <Label layoutX="216.0" layoutY="363.0" text="daN" />
@@ -136,10 +136,10 @@
       <Label layoutX="18.0" layoutY="176.0" prefHeight="17.0" prefWidth="123.0" text="Hauteur du remblai" />
       <Label layoutX="18.0" layoutY="483.0" prefHeight="17.0" prefWidth="123.0" text="Charge roulante" />
       <Label layoutX="19.0" layoutY="452.0" text="Reprise de charge" />
-         <ChoiceBox fx:id="chargeRoulanteChoiceBox" layoutX="139.0" layoutY="449.0" prefHeight="25.0" prefWidth="112.0" />
+         <ChoiceBox fx:id="typeChargeRoulanteChoiceBox" layoutX="139.0" layoutY="449.0" prefHeight="25.0" prefWidth="102.0" />
       <Label layoutX="18.0" layoutY="239.0" prefHeight="17.0" prefWidth="123.0" text="Epasseur du couvercle" />
       <Label layoutX="15.0" layoutY="48.0" prefHeight="17.0" prefWidth="102.0" text="Type de caniveau" />
-      <ChoiceBox fx:id="casChoiceBox" layoutX="142.0" layoutY="44.0" prefHeight="25.0" prefWidth="118.0" />
+      <ChoiceBox fx:id="typeCaniveauChoiceBox" layoutX="142.0" layoutY="44.0" prefHeight="25.0" prefWidth="102.0" />
       <ImageView fx:id="coupe3DImageView" fitHeight="180.0" fitWidth="300.0" layoutX="931.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="8.0" layoutY="263.0" text="Chargments" underline="true">
          <font>
@@ -150,7 +150,7 @@
       <Label layoutX="18.0" layoutY="335.0" prefHeight="17.0" prefWidth="123.0" text="Distance de la charge pontuelle$" />
       <Label layoutX="18.0" layoutY="392.0" prefHeight="17.0" prefWidth="123.0" text="Distance de la charge uniforme" />
       <Label layoutX="18.0" layoutY="363.0" prefHeight="17.0" prefWidth="123.0" text="Charge pontuelle" />
-      <TextField fx:id="epaisseurCouvercleTextField" layoutX="141.0" layoutY="235.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" />
+      <TextField fx:id="epaisseurCouvercleTextField" layoutX="141.0" layoutY="235.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.14" />
       <Label layoutX="216.0" layoutY="338.0" text="m" />
       <Label layoutX="217.0" layoutY="398.0" text="m" />
       <Label layoutX="216.0" layoutY="428.0" text="daN/m²" />

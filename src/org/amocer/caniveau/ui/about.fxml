@@ -22,7 +22,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text layoutX="339.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logiciel de dimensionnement des caniveau en béton fibré" wrappingWidth="412.13671875" />
+                        <Text layoutX="339.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logiciel de dimensionnement des caniveaux en béton fibré" wrappingWidth="412.13671875" />
                         <ImageView fitHeight="165.0" fitWidth="293.0" layoutX="14.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@resources/CACTUS_General_Sans_Fond.png" />
