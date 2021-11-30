@@ -23,6 +23,8 @@ public class Donnee {
 
     public  final double angleFrottement;
 
+    public final double epaisseurParoiChoisie;
+    public final double epaisseurFondChoisie;
 
     public final double chargeUniforme;
     public final double distanceChargeUniforme;
@@ -34,6 +36,7 @@ public class Donnee {
     public final double chargeRoulante;
 
     public final double poidsCouvercle;
+
 
 
 
@@ -59,13 +62,17 @@ public class Donnee {
 
             double angleFrottement,
 
+            double epaisseurParoiChoisie,
+            double epaisseurFondChoisie,
+
             double chargeUniforme,
             double distanceChargeUniforme,
             double chargePontuelle,
             double distanceChargePontuelle,
             String typeChargeRoulante,
             double chargeRoulante,
-            double poidsCouvercle) {
+            double poidsCouvercle)
+    {
         this.chantier = chantier;
         this.localisation = localisation;
         this.departement = departement;
@@ -87,6 +94,9 @@ public class Donnee {
 
         this.angleFrottement = angleFrottement;
 
+        this.epaisseurParoiChoisie = epaisseurParoiChoisie;
+        this.epaisseurFondChoisie = epaisseurFondChoisie;
+
         this.chargeUniforme = chargeUniforme;
         this.distanceChargeUniforme = distanceChargeUniforme;
         this.chargePontuelle = chargePontuelle;
@@ -94,5 +104,6 @@ public class Donnee {
         this.typeChargeRoulante = typeChargeRoulante;
         this.chargeRoulante = chargeRoulante;
         this.poidsCouvercle = poidsCouvercle;
+
     }
 }

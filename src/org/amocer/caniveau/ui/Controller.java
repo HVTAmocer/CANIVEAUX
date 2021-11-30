@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.amocer.caniveau.ndc.DonneesNDC;
 import org.amocer.caniveau.ndc.DonneesNDC2;
 import org.amocer.caniveau.ndc.EnregistrateurDePDFs;
 import org.amocer.caniveau.ndc.PDFHandler;
@@ -24,8 +23,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -77,7 +76,10 @@ public class Controller implements Initializable {
     private TextField hauteurRemblaiTextField;
     @FXML
     private TextField angleFrottementTextField;
-
+    @FXML
+    private TextField epaisseurParoiChoisiTextField;
+    @FXML
+    private TextField epaisseurFondChoisiTextField;
     @FXML
     private TableView<Calcul.ResultatDuCalcul> resultatsTableView;
 
@@ -252,6 +254,8 @@ public class Controller implements Initializable {
         //calcul des resultats
         List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
 
+
+
         //Affichage des resultats
         resultatsTableView.setItems(FXCollections.observableList(resultats));
 
@@ -260,11 +264,11 @@ public class Controller implements Initializable {
         renfortMinTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().renfortMini)));
         epaisseurMinParoiTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().epaisseurMinParoi)));
         epaisseurMinFondTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().epaisseurMinFond)));
-        volumeBetonTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().volumeBeton)));
-        poidsArmaturesTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().poidsArmatures)));
-        poidsFibreTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().poidsFibre)));
-        resistanceMinSolColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().resistanceMinSol)));
-        resistanceBetonLevageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().resistanceBetonLevage)));
+        volumeBetonTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().volumeBeton))));
+        poidsArmaturesTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().poidsArmatures))));
+        poidsFibreTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().poidsFibre))));
+        resistanceMinSolColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().resistanceMinSol))));
+        resistanceBetonLevageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().joursPourLevage)));
     }
 
     private Donnee lireDonnees() {
@@ -287,6 +291,8 @@ public class Controller implements Initializable {
                 Double.parseDouble(epaisseurCouvercleTextField.getText()),
                 Double.parseDouble(hauteurRemblaiTextField.getText()),
                 Double.parseDouble(angleFrottementTextField.getText()),
+                Double.parseDouble(epaisseurParoiChoisiTextField.getText()),
+                Double.parseDouble(epaisseurFondChoisiTextField.getText()),
                 Double.parseDouble(chargeUniformeTextField.getText()),
                 Double.parseDouble(distanceChargeUniformeTextField.getText()),
                 Double.parseDouble(chargePontuelleTextField.getText()),

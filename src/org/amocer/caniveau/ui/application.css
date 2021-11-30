@@ -6,3 +6,7 @@
 .column.table-cell {
     -fx-background-color: red;
 }
+
+.table-column {
+  -fx-alignment: CENTER;
+}

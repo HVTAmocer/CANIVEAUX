@@ -184,7 +184,7 @@
             <Label prefHeight="45.0" prefWidth="148.0" text="L" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="45.0" prefWidth="148.0" text="B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label prefHeight="45.0" prefWidth="148.0" text="H" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label prefHeight="45.0" prefWidth="148.0" text="Hb" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="Hr" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label prefHeight="45.0" prefWidth="148.0" text="eC" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label prefHeight="45.0" prefWidth="148.0" text="P" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label prefHeight="45.0" prefWidth="148.0" text="dP" GridPane.columnIndex="1" GridPane.rowIndex="10" />
@@ -214,16 +214,16 @@
       </GridPane>
        <TableView fx:id="resultatsTableView" editable="true" layoutX="402.0" layoutY="417.0" prefHeight="334.0" prefWidth="848.0">
            <columns>
-               <TableColumn fx:id="typeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="58.0" text="Classe &#10;béton" />
+               <TableColumn fx:id="typeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="58.0" style="-fx-alignment: CENTER;" text="Classe &#10;béton" />
                <TableColumn fx:id="dossageTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="52.0" text="Dosage &#10;(kg/m³)" />
             <TableColumn fx:id="renfortMinTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="73.0" text="Renfort&#10;mini" />
                <TableColumn fx:id="epaisseurMinParoiTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="95.0" text="Epaisseur mini&#10;de la paroi &#10;(cm)" />
                <TableColumn fx:id="epaisseurMinFondTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="98.0" text="Epaisseur mini &#10;du fond&#10;(cm)" />
-            <TableColumn fx:id="volumeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="85.0" text="Volume du&#10;béton &#10;(m³)" />
-            <TableColumn fx:id="poidsFibreTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="92.0" text="Poids de &#10;la fibres&#10;(kg)" />
+            <TableColumn fx:id="volumeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="85.0" text="Volume du&#10;béton/unité&#10;(m³)" />
+            <TableColumn fx:id="poidsFibreTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="92.0" style="-fx-alignment: CENTER;" text="Poids de &#10;la fibres&#10;(kg)" />
             <TableColumn fx:id="poidsArmaturesTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="103.0" text="Poids des &#10;armatures &#10;(kg)" />
-            <TableColumn fx:id="resistanceMinSolColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="90.0" text="Résistance &#10;mini Sol&#10;(MPa)" />
-            <TableColumn fx:id="resistanceBetonLevageColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="101.0" text="Résistance&#10;Béton Levage &#10;(MPa)" />
+            <TableColumn fx:id="resistanceMinSolColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="90.0" text="Résistance &#10;mini Sol à&#10;l'ELS (MPa)" />
+            <TableColumn fx:id="resistanceBetonLevageColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="101.0" text="Temps de&#10;Levage &#10;(jours)" />
            </columns>
        </TableView>
       <Label layoutX="402.0" layoutY="381.0" text="Tableau de solutions" underline="true">
