@@ -2,7 +2,7 @@ package org.amocer.caniveau.calculs;
 
 public class Test {
     public static void main(String[] args) {
-        Donnee donneeCas1 = new Donnee(
+       /* Donnee donneeCas1 = new Donnee(
                 "",
                 "",
                 "",
@@ -12,9 +12,10 @@ public class Test {
                 10.0,
                 1.0,
                 1.0,
-                "REMBLAI",
+                TypeCouvercle.DALLE_BA,
                 0.14,
                 0.5,
+                30.0,
                 10000.0,
                 1.0,
                 10000.0,
@@ -32,9 +33,10 @@ public class Test {
                 10.0,
                 1.0,
                 1.0,
-                "REMBLAI",
+                TypeCouvercle.DALLE_BA,
                 0.0,
                 0.0,
+                30.0,
                 10000.0,
                 1.0,
                 10000.0,
@@ -44,8 +46,7 @@ public class Test {
                 0.0);
 
         Calcul calcul3 = new Calcul(donneeCas3);
-        calcul3.poussee_Terre_Paroi(30.0);
-        calcul3.poussee_ChargeUniforme_Paroi(30.0);
-        calcul3.poussee_ChargePontuelle_Fond();
+        calcul3.poussee_Terre_Paroi();
+        calcul3.poussee_ChargeUniforme_Paroi()*/;
     }
 }

@@ -11,7 +11,7 @@ public class EffortResistant {
 
         double B = largeurSection;
         double h= hauteurSection;
-
+        // double facteurDOrientation = 1.0;
         double facteurDOrientation = Math.min(0.5 + 0.5 / 1.5 * hauteurSection * largeurSection,0.9);
 
         double fyd = 500.0 / 1.15 * Math.pow(10,6);
@@ -43,36 +43,28 @@ public class EffortResistant {
 
         double momentResistantELU = - a_var /  z_var;
 
-        momentResistantELU = momentResistantELU / 1000.0; //N*m->kN*m
+        momentResistantELU = momentResistantELU / 10.0; //N*m->daN*m
         return momentResistantELU;
     }
 
 
-    public static double effortTranchantResistantBetonFibre(double fck, double fR1, double fR3, double hauteurSection,
+    public static double effortTranchantResistantBetonFibre(double fck, double fR1k, double fR3k, double hauteurSection,
                                                             double largeurSection, double enrobage, double sectionArmature,
                                                             double sigmaCP) {
         //
         double bw = largeurSection;
-        double d = hauteurSection;
-        double d1 = d - enrobage;
+        double deff = 0.75*hauteurSection;
 
-        double k = 1.0 + Math.pow((200/(d1*1000)),0.5);
-        double vmin = 0.035*Math.pow(k,2.0/3.0)*Math.pow(fck,0.5);
-        double VRdmin = (vmin+0.15*sigmaCP)*bw*d1*Math.pow(10,3);
+        double k = Math.min( 1.0 + Math.pow((200/(deff*1000)),0.5), 2.0);
+        double vmin = 0.035*Math.pow(k,3.0/2.0)*Math.pow(fck,0.5);
+        double VRdc = (vmin+0.15*sigmaCP)*bw*deff*100000.0; //daN
+        double kH = Math.max(1.6-hauteurSection,1.0);
+        double gamaFt = 1.25;
 
-        double fctm;
-        if (fck <= 50) {
-            fctm = 0.3 * Math.pow(fck, (double) 2 / 3);
-        } else {
-            fctm = 2.12 * Math.log(1 + (fck + 8.0) / 10);
-        }
-        //double sectionArmature = nombreAcier*Math.PI*Math.pow(diammetreAcier,2)/4/Math.pow(10,6); //par ml
-        double rhoL = sectionArmature/(bw*d1);
-        double fFtu3 = 0.5*fR3 - 0.2*fR1;
+        double fR3d = fR3k/1.5;
+        double VRdf = kH*(0.18*fR3d)/(1.4*gamaFt)*bw*deff*100000.0;;
 
-        double VRds = (0.18*k*Math.pow(100*rhoL*(1+7.5*fFtu3/fctm)*fck,1.0/3.0)+0.15*sigmaCP)*bw*d1*1000;
-
-        double VRd = Math.max(VRdmin,VRds);
+        double VRd = VRdc + VRdf;
 
         return VRd;
     }

@@ -9,6 +9,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -29,158 +30,209 @@
             <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#aboutHandler" text="About" />
         </Menu>
     </MenuBar>
-    <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="547.0" prefWidth="1254.0" VBox.vgrow="NEVER">
-        <ImageView fx:id="coupeImageView" fitHeight="445.0" fitWidth="626.0" layoutX="273.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
-        <Label layoutX="10.0" layoutY="7.0" text="Géométrie" underline="true">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <Label layoutX="216.0" layoutY="312.0" text="daN/m²" />
-        <GridPane hgap="2.0" layoutX="901.0" layoutY="338.0" prefHeight="153.0" prefWidth="345.0" vgap="2.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="216.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="79.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="66.0" minWidth="40.0" prefWidth="46.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <Label text="Résultat du sol">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Label>
-            <Label text="Angle de frottement mini" GridPane.rowIndex="2" />
-            <Label text="Résistance mini du béton (pour levage)" GridPane.rowIndex="4" />
-            <Label text="MPa" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label layoutX="280.0" layoutY="264.0" text="°" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label text="Résistance mini du sol qELS  " GridPane.rowIndex="3" />
-         <Label fx:id="resistanceSolLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <Label text="bars" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-         <Label fx:id="angleFrottementLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label fx:id="resistanceMiniBetonLabel" prefHeight="28.0" prefWidth="137.0" style="-fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <Label text="Poids volumique du sol" GridPane.rowIndex="1" />
-         <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="1" text="1800" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Label text="daN/m3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        </GridPane>
-        <Label layoutX="128.0" layoutY="15.0" prefHeight="17.0" prefWidth="112.0" text="(Unité : daN, m, °)" />
-      <GridPane hgap="2.0" layoutX="12.0" layoutY="-96.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="87.0" prefWidth="1242.0" vgap="2.0">
+    <Pane prefHeight="779.0" prefWidth="1270.0">
+        <ImageView fx:id="coupe3DImageView" fitHeight="415.0" fitWidth="848.0" layoutX="403.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+      <GridPane hgap="2.0" layoutX="9.0" layoutY="-128.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="1245.0" vgap="2.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="125.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="0.0" prefWidth="0.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="149.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="116.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="105.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="121.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="48.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="164.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="148.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="125.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="460.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="19.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="27.0" prefWidth="198.0" text="Nom du projet" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="155.0" text="Département" GridPane.rowIndex="3" />
+            <Label text="Localisation" GridPane.rowIndex="2" />
+            <TextField fx:id="chantierTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="nom du chantier" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="localisationTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="81.0" promptText="Localisation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="departementTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="215.0" promptText="Département" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <HBox prefHeight="83.0" prefWidth="428.0" GridPane.columnIndex="7" GridPane.rowIndex="1" GridPane.rowSpan="3">
+               <children>
+                  <Button fx:id="verifierButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="82.0" prefWidth="137.0" text="Vérification" />
+                  <Button fx:id="imprimerNDCButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="82.0" prefWidth="148.0" text="Imprimer NDC" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="83.0" fitWidth="165.0">
+                     <image>
+                        <Image url="@resources/CACTUS_General_Sans_Fond.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label layoutX="10.0" layoutY="12.0" prefHeight="26.0" prefWidth="184.0" text="Responsable du projet" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label prefHeight="26.0" prefWidth="159.0" text="Numéro d'affaire" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label layoutX="344.0" layoutY="40.0" prefHeight="26.0" prefWidth="155.0" text="Date de réalisation :" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <TextField fx:id="responsableTextField" layoutX="141.0" layoutY="12.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="Responsable du projet" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField fx:id="numeroAffaireTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="Numéro d'affaire" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField fx:id="dateTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="Date de réalisation" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label layoutX="10.0" layoutY="73.0" prefHeight="5.0" prefWidth="118.0" text="Contexte" GridPane.rowIndex="5" />
+            <TextArea fx:id="contexteTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </TextArea>
+         </children>
+      </GridPane>
+      <GridPane hgap="2.0" layoutX="6.0" layoutY="-2.0" prefHeight="750.0" prefWidth="373.0" vgap="2.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0" minWidth="10.0" prefWidth="201.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="22.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="99.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="22.0" prefWidth="46.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Chantier " GridPane.rowIndex="1" />
-            <Label text="Client" GridPane.rowIndex="3" />
-            <Label text="Localisation" GridPane.rowIndex="2" />
-            <TextField fx:id="chantierTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="159.0" promptText="nom du chantier" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="localisationTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="81.0" promptText="Localisation" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="clientTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="28.0" prefWidth="215.0" promptText="Client" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-               <Label text="Type de la fibre" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-               <ChoiceBox fx:id="typeFibreChoiceBox" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <HBox prefHeight="83.0" prefWidth="428.0" GridPane.columnIndex="7" GridPane.rowIndex="1" GridPane.rowSpan="3">
-               <children>
-                  <Button fx:id="verifierButton" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="82.0" prefWidth="137.0" text="Vérification" />
-                  <Button fx:id="imprimerNDCButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="82.0" prefWidth="148.0" text="Imprimer NDC" HBox.hgrow="ALWAYS" />
-                  <ImageView fx:id="logoImageView" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ImageView>
-                  <ImageView fitHeight="82.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="25.0" right="5.0" />
-                     </HBox.margin>
-                     <image>
-                        <Image url="@resources/Logo%20amocer.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+            <Label text="Géométrie">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="45.0" prefWidth="148.0" text="Type de caniveau" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="typeCaniveauChoiceBox" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="Longeur " GridPane.rowIndex="2" />
+            <TextField fx:id="longeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Largeur intérieure" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Hauteur intérieure" GridPane.rowIndex="4" />
+            <TextField fx:id="hauteurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="largeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label prefHeight="17.0" prefWidth="206.0" text="Hauteur du remblai (sans couvercle)" GridPane.rowIndex="5" />
+            <TextField fx:id="hauteurRemblaiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Type de couvercle" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="typeCouvercleChoiceBox" prefHeight="25.0" prefWidth="127.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Epasseur du couvercle" GridPane.rowIndex="7" />
+            <TextField fx:id="epaisseurCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="14" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label text="Chargements" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="123.0" text="Charge uniforme" GridPane.rowIndex="9" />
+            <TextField fx:id="chargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+              <Label text="daN/m²" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Label prefHeight="17.0" prefWidth="188.0" text="Distance de la charge pontuelle" GridPane.rowIndex="10" />
+            <TextField fx:id="distanceChargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Charge pontuelle" GridPane.rowIndex="11" />
+            <TextField fx:id="chargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Label text="daN" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <Label prefHeight="37.0" prefWidth="201.0" text="Distance de la charge uniforme" GridPane.rowIndex="12" />
+            <TextField fx:id="distanceChargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Poids du couvercle" GridPane.rowIndex="13" />
+            <TextField fx:id="poidsCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="350.0" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <Label text="daN/m²" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <Label text="Type de la charge roulante" GridPane.rowIndex="14" />
+               <ChoiceBox fx:id="typeChargeRoulanteChoiceBox" prefHeight="25.0" prefWidth="127.0" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Label prefHeight="17.0" prefWidth="123.0" text="Charge roulante" GridPane.rowIndex="15" />
+            <TextField fx:id="chargeRoulantTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="3000.0" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+            <Label text="daN" GridPane.columnIndex="3" GridPane.rowIndex="15" />
+               <Label prefHeight="17.0" prefWidth="83.0" text="Matériaux" GridPane.rowIndex="16">
+                   <font>
+                       <Font name="System Bold" size="12.0" />
+                   </font>
+               </Label>
+               <Label text="Type de la fibre" GridPane.rowIndex="17" />
+               <ChoiceBox fx:id="typeFibreChoiceBox" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+            <Label text="Poids volumique du sol" GridPane.rowIndex="18" />
+            <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="1" text="1800" GridPane.columnIndex="2" GridPane.rowIndex="18" />
+            <Label text="daN/m³" GridPane.columnIndex="3" GridPane.rowIndex="18" />
+               <Label text="Angle de frottement mini" GridPane.rowIndex="19" />
+            <TextField fx:id="angleFrottementTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="30" GridPane.columnIndex="2" GridPane.rowIndex="19" />
+               <Label text="°" GridPane.columnIndex="3" GridPane.rowIndex="19" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="L" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="H" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="Hb" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="eC" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="P" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="dP" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="F" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="F" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="Fc" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <Label prefHeight="45.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="R" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <Label prefHeight="45.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="45.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="45.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+            <Label prefHeight="45.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="17.0" prefWidth="133.0" text="Choix des épaisseurs" GridPane.rowIndex="20">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Epaisseur de la paroi personalisé" GridPane.rowIndex="21" />
+            <TextField fx:id="epaisseurParoiChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
+            <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="21" />
+            <Label text="Epaisseur du fond personalisé" GridPane.rowIndex="22" />
+            <TextField fx:id="epaisseurFondChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10.0" GridPane.columnIndex="2" GridPane.rowIndex="22" />
+            <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="22" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="eP" GridPane.columnIndex="1" GridPane.rowIndex="21" />
+            <Label prefHeight="45.0" prefWidth="148.0" text="eF" GridPane.columnIndex="1" GridPane.rowIndex="22" />
          </children>
       </GridPane>
-      <TextField fx:id="longeurTextField" layoutX="140.0" layoutY="80.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10" />
-      <TextField fx:id="hauteurTextField" layoutX="140.0" layoutY="110.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
-      <TextField fx:id="largeurTextField" layoutX="140.0" layoutY="142.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
-      <TextField fx:id="chargePontuelleTextField" layoutX="139.0" layoutY="358.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10000" />
-      <TextField fx:id="distanceChargePontuelleTextField" layoutX="139.0" layoutY="387.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" />
-      <TextField fx:id="chargeUniformeTextField" layoutX="139.0" layoutY="300.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" />
-      <TextField fx:id="distanceChargeUniformeTextField" layoutX="139.0" layoutY="329.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.0" />
-      <TextField fx:id="hauteurRemblaiTextField" layoutX="140.0" layoutY="171.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" />
-      <TextField fx:id="chargeRoulantTextField" layoutX="140.0" layoutY="478.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="3000.0" />
-      <TextField fx:id="poidsCouvercleTextField" layoutX="139.0" layoutY="417.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="350.0" />
-      <ChoiceBox fx:id="typeCouvercleChoiceBox" layoutX="140.0" layoutY="204.0" prefWidth="102.0" />
-      <Label layoutX="18.0" layoutY="208.0" prefHeight="17.0" prefWidth="123.0" text="Type de couvercle" />
-      <Label layoutX="18.0" layoutY="422.0" prefHeight="17.0" prefWidth="123.0" text="Poids du couvercle" />
-      <Label layoutX="216.0" layoutY="363.0" text="daN" />
-      <Label layoutX="18.0" layoutY="85.0" prefHeight="17.0" prefWidth="123.0" text="Longeur " />
-      <Label layoutX="18.0" layoutY="115.0" prefHeight="17.0" prefWidth="123.0" text="Largeur" />
-      <Label layoutX="18.0" layoutY="147.0" prefHeight="17.0" prefWidth="123.0" text="Hauteur" />
-      <Label layoutX="18.0" layoutY="176.0" prefHeight="17.0" prefWidth="123.0" text="Hauteur du remblai" />
-      <Label layoutX="18.0" layoutY="483.0" prefHeight="17.0" prefWidth="123.0" text="Charge roulante" />
-      <Label layoutX="19.0" layoutY="452.0" text="Reprise de charge" />
-         <ChoiceBox fx:id="typeChargeRoulanteChoiceBox" layoutX="139.0" layoutY="449.0" prefHeight="25.0" prefWidth="102.0" />
-      <Label layoutX="18.0" layoutY="239.0" prefHeight="17.0" prefWidth="123.0" text="Epasseur du couvercle" />
-      <Label layoutX="15.0" layoutY="48.0" prefHeight="17.0" prefWidth="102.0" text="Type de caniveau" />
-      <ChoiceBox fx:id="typeCaniveauChoiceBox" layoutX="142.0" layoutY="44.0" prefHeight="25.0" prefWidth="102.0" />
-      <ImageView fx:id="coupe3DImageView" fitHeight="180.0" fitWidth="300.0" layoutX="931.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="8.0" layoutY="263.0" text="Chargments" underline="true">
+       <TableView fx:id="resultatsTableView" editable="true" layoutX="402.0" layoutY="417.0" prefHeight="334.0" prefWidth="848.0">
+           <columns>
+               <TableColumn fx:id="typeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="58.0" text="Classe &#10;béton" />
+               <TableColumn fx:id="dossageTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="52.0" text="Dosage &#10;(kg/m³)" />
+            <TableColumn fx:id="renfortMinTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="73.0" text="Renfort&#10;mini" />
+               <TableColumn fx:id="epaisseurMinParoiTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="95.0" text="Epaisseur mini&#10;de la paroi &#10;(cm)" />
+               <TableColumn fx:id="epaisseurMinFondTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="98.0" text="Epaisseur mini &#10;du fond&#10;(cm)" />
+            <TableColumn fx:id="volumeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="85.0" text="Volume du&#10;béton &#10;(m³)" />
+            <TableColumn fx:id="poidsFibreTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="92.0" text="Poids de &#10;la fibres&#10;(kg)" />
+            <TableColumn fx:id="poidsArmaturesTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="103.0" text="Poids des &#10;armatures &#10;(kg)" />
+            <TableColumn fx:id="resistanceMinSolColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="90.0" text="Résistance &#10;mini Sol&#10;(MPa)" />
+            <TableColumn fx:id="resistanceBetonLevageColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="101.0" text="Résistance&#10;Béton Levage &#10;(MPa)" />
+           </columns>
+       </TableView>
+      <Label layoutX="402.0" layoutY="381.0" text="Tableau de solutions" underline="true">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="303.0" prefHeight="17.0" prefWidth="123.0" text="Charge uniforme" />
-      <Label layoutX="18.0" layoutY="335.0" prefHeight="17.0" prefWidth="123.0" text="Distance de la charge pontuelle$" />
-      <Label layoutX="18.0" layoutY="392.0" prefHeight="17.0" prefWidth="123.0" text="Distance de la charge uniforme" />
-      <Label layoutX="18.0" layoutY="363.0" prefHeight="17.0" prefWidth="123.0" text="Charge pontuelle" />
-      <TextField fx:id="epaisseurCouvercleTextField" layoutX="141.0" layoutY="235.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.14" />
-      <Label layoutX="216.0" layoutY="338.0" text="m" />
-      <Label layoutX="217.0" layoutY="398.0" text="m" />
-      <Label layoutX="216.0" layoutY="428.0" text="daN/m²" />
-      <Label layoutX="216.0" layoutY="486.0" text="daN" />
-      <Label layoutX="216.0" layoutY="248.0" text="m" />
-      <Label layoutX="218.0" layoutY="179.0" text="m" />
-      <Label layoutX="218.0" layoutY="155.0" text="m" />
-      <Label layoutX="218.0" layoutY="123.0" text="m" />
-      <Label layoutX="217.0" layoutY="93.0" text="m" />
       <VBox.margin>
-         <Insets top="100.0" />
+         <Insets top="130.0" />
       </VBox.margin>
     </Pane>
-   <Label text="Tableau de solutions" underline="true">
-      <font>
-         <Font size="22.0" />
-      </font>
-   </Label>
-    <TableView fx:id="resultatsTableView" editable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="274.0" prefWidth="1254.0">
-        <columns>
-            <TableColumn fx:id="combinaisonsTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" text="Classe du béton" />
-            <TableColumn fx:id="messageTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="91.0" text="Dosage" />
-            <TableColumn fx:id="etatTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="175.0" text="Epaisseur mini des parois" />
-            <TableColumn fx:id="pourcentageTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="144.0" text="Epaisseur mini du fond" />
-         <TableColumn fx:id="pourcentageTableColumn1" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="144.0" text="Volume du béton" />
-         <TableColumn fx:id="pourcentageTableColumn11" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="144.0" text="Poids de la fibres" />
-         <TableColumn fx:id="pourcentageTableColumn111" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="144.0" text="Poids des armatures" />
-        </columns>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-    </TableView>
 </VBox>

@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.amocer.caniveau.calculs.CalculateurDeMursDeSoutainement;
+import org.amocer.caniveau.calculs.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,24 +15,30 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.amocer.caniveau.calculs.Donnee;
-import org.amocer.caniveau.calculs.TypeCaniveau;
-import org.amocer.caniveau.ndc.DonneesNDC;
 import org.amocer.caniveau.ndc.EnregistrateurDePDFs;
 
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
     public TextField chantierTextField;
     @FXML
-    public TextField clientTextField;
+    public TextField departementTextField;
     @FXML
     public TextField localisationTextField;
+    @FXML
+    public TextField responsableTextField;
+    @FXML
+    public TextField numeroAffaireTextField;
+    @FXML
+    public TextField dateTextField;
+    @FXML
+    public TextArea contexteTextArea;
     @FXML
     private ChoiceBox<String> typeFibreChoiceBox;
     @FXML
@@ -65,38 +71,48 @@ public class Controller implements Initializable {
     @FXML
     private TextField hauteurRemblaiTextField;
     @FXML
-    private Label resistanceSolLabel;
-    @FXML
-    private Label angleFrottementLabel;
-    @FXML
-    private Label resistanceBetonAuLevageLabel;
-
+    private TextField angleFrottementTextField;
 
     @FXML
-    private TableView<CalculateurDeMursDeSoutainement.ResultatDuCalcul> resultatsTableView;
+    private TableView<Calcul.ResultatDuCalcul> resultatsTableView;
 
     @FXML
-    private TableColumn<CalculateurDeMursDeSoutainement.ResultatDuCalcul, String> combinaisonsTableColumn;
+    private TableColumn<Calcul.ResultatDuCalcul, String> typeBetonTableColumn;
 
     @FXML
-    private TableColumn<CalculateurDeMursDeSoutainement.ResultatDuCalcul, String> messageTableColumn;
+    private TableColumn<Calcul.ResultatDuCalcul, String> dossageTableColumn;
 
     @FXML
-    private TableColumn<CalculateurDeMursDeSoutainement.ResultatDuCalcul, String> etatTableColumn;
+    private TableColumn<Calcul.ResultatDuCalcul, String> renfortMinTableColumn;
 
     @FXML
-    private TableColumn<CalculateurDeMursDeSoutainement.ResultatDuCalcul, String> pourcentageTableColumn;
+    private TableColumn<Calcul.ResultatDuCalcul, String> epaisseurMinParoiTableColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> epaisseurMinFondTableColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> volumeBetonTableColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> poidsArmaturesTableColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> poidsFibreTableColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> resistanceMinSolColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> resistanceBetonLevageColumn;
 
     @FXML
     private TextField poidsVolumiqueSolTextField;
     @FXML
-    private ImageView coupeImageView;
-
-    @FXML
     private ImageView coupe3DImageView;
 
     @FXML
-    private ChoiceBox<String> typeCouvercleChoiceBox;
+    private ChoiceBox<TypeCouvercle> typeCouvercleChoiceBox;
 
     @FXML
     private TextField epaisseurCouvercleTextField;
@@ -105,9 +121,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/1.png");
-        coupeImageView.setImage(new Image(coupeImage));
-        InputStream coupe3DImage = VerificateurDeLicence.class.getResourceAsStream("resources/1.png");
-        coupe3DImageView.setImage(new Image(coupe3DImage));
+        coupe3DImageView.setImage(new Image(coupeImage));
 
         typeCaniveauChoiceBox.setItems(FXCollections.observableList(Arrays.asList(TypeCaniveau.REMBAI,TypeCaniveau.COUVERCLE,TypeCaniveau.OUVERT)));
         typeCaniveauChoiceBox.getSelectionModel().selectFirst();
@@ -116,39 +130,66 @@ public class Controller implements Initializable {
         typeFibreChoiceBox.setItems(FXCollections.observableList(Arrays.asList("3D 80/60GG")));
         typeFibreChoiceBox.getSelectionModel().selectFirst();
 
-        typeCouvercleChoiceBox.setItems(FXCollections.observableList(Arrays.asList("DALLE BA","CAILLEBOTIS","NON")));
+        typeCouvercleChoiceBox.setItems(FXCollections.observableList(Arrays.asList(TypeCouvercle.DALLE_BA,TypeCouvercle.CAILLEBOTIS)));
         typeCouvercleChoiceBox.getSelectionModel().selectFirst();
 
-        typeChargeRoulanteChoiceBox.setItems(FXCollections.observableList(Arrays.asList("Piéton","3T par essieu ","6T par essieu","13T par essieu")));
+        typeChargeRoulanteChoiceBox.setItems(FXCollections.observableList(Arrays.asList(
+                TypeChargeRoulante.ESSIEU_3T.type,
+                TypeChargeRoulante.ESSIEU_6T.type,
+                TypeChargeRoulante.ESSIEU_13T.type,
+                TypeChargeRoulante.PIETON.type)));
         typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
 
         verifierButton.setOnAction(e -> verifier());
         imprimerNDCButton.setOnAction(e -> imprimerNDC());
-
-        combinaisonsTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().combinaison.nom));
-        messageTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().message));
-        etatTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().typeDeMessage.toString()));
-        pourcentageTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().pourcentage()));
     }
 
     private void changerImage() {
         if (typeCaniveauChoiceBox.getValue().equals(TypeCaniveau.REMBAI)) {
             InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/1.png");
-            coupeImageView.setImage(new Image(coupeImage));
+            coupe3DImageView.setImage(new Image(coupeImage));
+            typeCouvercleChoiceBox.setDisable(false);
+            typeCouvercleChoiceBox.getSelectionModel().selectFirst();
+            hauteurRemblaiTextField.setDisable(false);
+            if (typeCouvercleChoiceBox.getValue().equals(TypeCouvercle.CAILLEBOTIS)) {
+                epaisseurCouvercleTextField.setText(String.valueOf(0));
+                epaisseurCouvercleTextField.setDisable(true);
+            }
+            poidsCouvercleTextField.setDisable(false);
+            typeChargeRoulanteChoiceBox.setDisable(false);
+            typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
+            chargeRoulantTextField.setDisable(false);
         }else if (typeCaniveauChoiceBox.getValue().equals(TypeCaniveau.COUVERCLE)){
             InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/2.png");
-            coupeImageView.setImage(new Image(coupeImage));
+            coupe3DImageView.setImage(new Image(coupeImage));
+            typeCouvercleChoiceBox.setDisable(false);
+            typeCouvercleChoiceBox.getSelectionModel().selectFirst();
+            epaisseurCouvercleTextField.setDisable(false);
+            if (typeCouvercleChoiceBox.getValue().equals(TypeCouvercle.CAILLEBOTIS)) {
+                epaisseurCouvercleTextField.setText(String.valueOf(0));
+                epaisseurCouvercleTextField.setDisable(true);
+            }
             hauteurRemblaiTextField.setText(String.valueOf(0));
             hauteurRemblaiTextField.setDisable(true);
+            poidsCouvercleTextField.setDisable(false);
+            typeChargeRoulanteChoiceBox.setDisable(false);
+            typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
+            chargeRoulantTextField.setDisable(false);
         }else {
             InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/3.png");
-            coupeImageView.setImage(new Image(coupeImage));
-            typeCouvercleChoiceBox.setValue("NON");
+            coupe3DImageView.setImage(new Image(coupeImage));
+            typeCouvercleChoiceBox.setValue(TypeCouvercle.NON);
             typeCouvercleChoiceBox.setDisable(true);
             hauteurRemblaiTextField.setText(String.valueOf(0));
             hauteurRemblaiTextField.setDisable(true);
             epaisseurCouvercleTextField.setText(String.valueOf(0));
             epaisseurCouvercleTextField.setDisable(true);
+            poidsCouvercleTextField.setText(String.valueOf(0));
+            poidsCouvercleTextField.setDisable(true);
+            typeChargeRoulanteChoiceBox.setValue(TypeChargeRoulante.NON.type);
+            typeChargeRoulanteChoiceBox.setDisable(true);
+            chargeRoulantTextField.setText(String.valueOf(0));
+            chargeRoulantTextField.setDisable(true);
         }
     }
 
@@ -173,13 +214,39 @@ public class Controller implements Initializable {
 
     private void verifier() {
         resultatsTableView.getItems().clear();
+
+        // Lire des donnees
+        Donnee donnee = lireDonnees();
+        Calcul calcul= new Calcul(donnee);
+
+        //calcul des resultats
+        List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
+
+        //Affichage des resultats
+        resultatsTableView.setItems(FXCollections.observableList(resultats));
+
+        typeBetonTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().typeBeton));
+        dossageTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().dossage)));
+        renfortMinTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().renfortMini)));
+        epaisseurMinParoiTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().epaisseurMinParoi)));
+        epaisseurMinFondTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().epaisseurMinFond)));
+        volumeBetonTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().volumeBeton)));
+        poidsArmaturesTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().poidsArmatures)));
+        poidsFibreTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().poidsFibre)));
+        resistanceMinSolColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().resistanceMinSol)));
+        resistanceBetonLevageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().resistanceBetonLevage)));
     }
 
     private Donnee lireDonnees() {
         return new Donnee(
                 chantierTextField.getText(),
                 localisationTextField.getText(),
-                clientTextField.getText(),
+                departementTextField.getText(),
+                responsableTextField.getText(),
+                numeroAffaireTextField.getText(),
+                dateTextField.getText(),
+                contexteTextArea.getText(),
+
                 typeFibreChoiceBox.getValue(),
                 Double.parseDouble(poidsVolumiqueSolTextField.getText()),
                 typeCaniveauChoiceBox.getValue(),
@@ -189,6 +256,7 @@ public class Controller implements Initializable {
                 typeCouvercleChoiceBox.getValue(),
                 Double.parseDouble(epaisseurCouvercleTextField.getText()),
                 Double.parseDouble(hauteurRemblaiTextField.getText()),
+                Double.parseDouble(angleFrottementTextField.getText()),
                 Double.parseDouble(chargeUniformeTextField.getText()),
                 Double.parseDouble(distanceChargeUniformeTextField.getText()),
                 Double.parseDouble(chargePontuelleTextField.getText()),

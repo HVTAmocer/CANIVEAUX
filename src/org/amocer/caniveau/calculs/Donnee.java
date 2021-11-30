@@ -3,18 +3,25 @@ package org.amocer.caniveau.calculs;
 public class Donnee {
     public final String chantier;
     public final String localisation;
-    public final String client;
+    public final String departement;
+    public final String responsableProjet;
+    public final String numeroAffaire;
+    public final String dateRealisation;
+    public final String contexteProjet;
 
-    public final String typeFibre;
+
+    public final String nomFibre;
     public final double poidsVolumiqueSol;
 
     public final TypeCaniveau typeCaniveau;
     public final double longueur;
     public final double largeur;
     public final double hauteur;
-    public final String typeCouvercle;
+    public final TypeCouvercle typeCouvercle;
     public double epaisseurCouvercle;
     public final double hauteurRemblai;
+
+    public  final double angleFrottement;
 
 
     public final double chargeUniforme;
@@ -33,18 +40,24 @@ public class Donnee {
     public Donnee(
             String chantier,
             String localisation,
-            String client,
+            String departement,
+            String responsableProjet,
+            String numeroAffaire,
+            String dateRealisation,
+            String contexteProjet,
 
-            String typeFibre,
+            String nomFibre,
             double poidsVolumiqueSol,
 
             TypeCaniveau typeCaniveau,
             double longueur,
             double largeur,
             double hauteur,
-            String typeCouvercle,
+            TypeCouvercle typeCouvercle,
             double epaisseurCouvercle,
             double hauteurRemblai,
+
+            double angleFrottement,
 
             double chargeUniforme,
             double distanceChargeUniforme,
@@ -55,9 +68,13 @@ public class Donnee {
             double poidsCouvercle) {
         this.chantier = chantier;
         this.localisation = localisation;
-        this.client = client;
+        this.departement = departement;
+        this.responsableProjet = responsableProjet;
+        this.numeroAffaire = numeroAffaire;
+        this.dateRealisation = dateRealisation;
+        this.contexteProjet = contexteProjet;
 
-        this.typeFibre = typeFibre;
+        this.nomFibre = nomFibre;
         this.poidsVolumiqueSol = poidsVolumiqueSol;
 
         this.typeCaniveau = typeCaniveau;
@@ -67,6 +84,8 @@ public class Donnee {
         this.typeCouvercle = typeCouvercle;
         this.epaisseurCouvercle = epaisseurCouvercle;
         this.hauteurRemblai = hauteurRemblai;
+
+        this.angleFrottement = angleFrottement;
 
         this.chargeUniforme = chargeUniforme;
         this.distanceChargeUniforme = distanceChargeUniforme;

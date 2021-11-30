@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
-public class CalculateurDeMursDeSoutainement {
+class CalculateurDeMurDeSoutainement {
 /*    final double POIDS_VOLUMIQUE_BETON = 25.0; //KN/m3
     final double ANGLE_FROTTEMENT_INTERFACE = 0.0;
 

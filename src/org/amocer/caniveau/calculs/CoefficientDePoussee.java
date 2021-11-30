@@ -138,8 +138,8 @@ public class CoefficientDePoussee {
     // - Sol pulvérulent (cohésion c=0)
     // - Sans prise en compte le frottement qui existe entre le sol et le mur (delta =0)
     // - Terrain plan à l'arrière de la structure (beta =0)
-    public static double KaRankine(double phi) {
-        double radPhi = Math.toRadians(phi);
+    public static double KaRankine(double angleFrottementSol) {
+        double radPhi = Math.toRadians(angleFrottementSol);
         return Math.pow(Math.tan(Math.PI/4-radPhi/2),2);
     }
 
