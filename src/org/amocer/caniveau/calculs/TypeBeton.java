@@ -88,4 +88,22 @@ public enum TypeBeton {
     public static TypeBeton get(String nomBeton) {
         return TypeBeton.valueOf(nomBeton.substring(0,3));
     }
+
+    public double getResistanceCompressionTemps(int jour) {
+        double s = 0.25; // ciments de classe N
+        double betaCC = Math.exp(s*(1-Math.sqrt(28/jour)));
+        return betaCC*fcm;
+    }
+
+    public double getResistanceTractionTemps(int jour) {
+        double s = 0.25; // ciments de classe N
+        double betaCC = Math.exp(s*(1-Math.sqrt(28/jour)));
+        double alpha;
+        if (jour < 28) {
+            alpha = 1.0;
+        }else{
+            alpha = 2.0/3.0;
+        }
+        return Math.pow(betaCC,alpha)*fctm;
+    }
 }

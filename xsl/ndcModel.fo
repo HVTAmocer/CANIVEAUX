@@ -5,36 +5,46 @@
     <fo:simple-page-master master-name="simple"
                            page-height="29.7cm"
                            page-width="21cm"
-                           margin-top="1cm"
-                           margin-bottom="2cm"
+                           margin-top="1.0cm"
+                           margin-bottom="1.0cm"
                            margin-left="2.5cm"
                            margin-right="2.5cm">
-      <fo:region-body margin-top="2.5cm"/>
+      <fo:region-body margin-top="2.0cm" margin-bottom="2cm"/>
       <fo:region-before extent="3cm"/>
-      <fo:region-after extent="1.5cm"/>
+      <fo:region-after extent="1.0cm"/>
     </fo:simple-page-master>
   </fo:layout-master-set>
   <fo:page-sequence master-reference="simple">
+
+    <fo:static-content flow-name="xsl-region-before">
+      <fo:block text-align="center">
+        <fo:external-graphic src="url(logo-socramat.png)"
+                             content-width="3cm"
+                             scaling="uniform"
+        />
+      </fo:block>
+    </fo:static-content>
+
+    <fo:static-content flow-name="xsl-region-after">
+      <fo:block font-size="small"> NDC réalisée avec l’outil de calcul CACTUS, conçu et développé par AMOCER Group.</fo:block>
+      <fo:block text-align="end"> Page <fo:page-number/>/<fo:page-number-citation ref-id="last-page"/> </fo:block>
+    </fo:static-content>
+
+
     <fo:flow flow-name="xsl-region-body">
       <fo:block font-family="Arial"
                 font-size="11pt"
                 white-space-collapse="false"
                 text-align="justify">
-        <fo:block text-align="center">
-          <fo:external-graphic src="url(logo-socramat.png)"
-                               content-width="6cm"
-                               scaling="uniform"
-          />
-        </fo:block>
 
-        <fo:block font-size="20pt"
+        <fo:block font-size="16pt"
                   font-family="sans-serif"
                   line-height="32pt"
                   space-after.optimum="15pt"
                   text-align="center"
                   padding-top="3pt"
                   space-before="3mm">
-          Note de calcul - Mur de soutènement en béton renforcé par des fibres métalliques <fo:block/>
+          Note de calcul - Caniveaux en béton renforcé par des fibres métalliques <fo:block/>
         </fo:block>
 
         <fo:block font-size="16pt"
@@ -48,88 +58,70 @@
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.1 Géométrie du mur:</fo:block>
-        <fo:table>
+          1.1 Géométrie:</fo:block>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="70mm"/>
           <fo:table-column column-width="15mm"/>
           <fo:table-column column-width="50mm"/>
           <fo:table-body>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Longeur du mur </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Longeur </fo:block></fo:table-cell>
               <fo:table-cell><fo:block>L </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$longueurDuMur$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$longueur$$m</fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row>
-              <fo:table-cell><fo:block>Hauteur totale du mur</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Hauteur intérieure</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>H </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$hauteurDuMur$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$hauteur$$m</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Largeur du mur</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Largeur intérieure</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>B</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$largeurDuMur$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$largeur$$m</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Epaisseur haute du rideau</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>e1</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$epaisseurHauteRideau$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Hauteur du Remblai</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Hr</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$hauteurRemblai$$m</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Epaisseur base du rideau</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>e2</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$epaisseurBaseRideau$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Type du couvercle</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>-</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$typeCouvercle$$</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Epaisseur du talon</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>e3</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$epaisseurTalon$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Epaisseur du couvercle</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>eC</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$epaisseurCouvercle$$ cm</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
-              <fo:table-cell><fo:block>Hauteur du talus</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>H<fo:inline font-size="6" baseline-shift="sub">TN</fo:inline></fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$hauteurTalus$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>Epaisseur des parois</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>eP</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$epaisseurParoi$$ cm</fo:block></fo:table-cell>
+            </fo:table-row>
+            <fo:table-row>
+              <fo:table-cell><fo:block>Epaisseur du fond </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>eP</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$epaisseurFond$$ cm</fo:block></fo:table-cell>
             </fo:table-row>
 
-            <fo:table-row>
-              <fo:table-cell><fo:block>Angle du talus </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block> α </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$angleTalus$$°</fo:block></fo:table-cell>
-            </fo:table-row>
-
-            <fo:table-row>
-              <fo:table-cell><fo:block>Avec des ancrages sur le talon ? </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block> - </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$typeAncrage$$ </fo:block></fo:table-cell>
-            </fo:table-row>
-
-            <fo:table-row>
-              <fo:table-cell><fo:block>Nombre des ancrages /ml </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block> - </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$nombreAncrages$$ </fo:block></fo:table-cell>
-            </fo:table-row>
           </fo:table-body>
         </fo:table>
 
-        <fo:block text-align="center" space-before="3mm" break-after="page">
-          <fo:external-graphic src="url(Geometrie.png)"
-                               content-width="12.5cm"
-                               scaling="uniform"
-          />
-        </fo:block>
 
         <fo:block font-size="12pt"
                   font-weight="bold"
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.2 Charges d'exploitation </fo:block>
-        <fo:table>
+          1.2 Chargements </fo:block>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="15mm"/>
           <fo:table-column column-width="50mm"/>
@@ -137,27 +129,32 @@
             <fo:table-row>
               <fo:table-cell><fo:block>Charge uniforme</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>P</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$chargeUniforme$$KN/m²</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$chargeUniforme$$ daN/m²</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
               <fo:table-cell><fo:block>Position de la charge uniforme</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>dP</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$distanceChargeUniforme$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$distanceChargeUniforme$$ m</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
               <fo:table-cell><fo:block>Charge ponctuelle</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>F</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$chargePontuelle$$KN</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$chargePontuelle$$ daN/m²</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
               <fo:table-cell><fo:block>Position de la charge ponctuelle</fo:block></fo:table-cell>
               <fo:table-cell><fo:block>dF</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$distanceChargePontuelle$$m</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$distanceChargePontuelle$$ m</fo:block></fo:table-cell>
             </fo:table-row>
 
+            <fo:table-row>
+              <fo:table-cell><fo:block> Charge roulante $$typeChargeRoulante$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>R</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$chargeRoulante$$ daN</fo:block></fo:table-cell>
+            </fo:table-row>
           </fo:table-body>
         </fo:table>
 
@@ -167,13 +164,13 @@
                   space-before="3mm"
                   space-after="3mm">
           1.3 Matériaux </fo:block>
-        <fo:table>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="50mm"/>
           <fo:table-body>
             <fo:table-row>
               <fo:table-cell><fo:block>Classe du béton (EN 1992-1-1/3.1) </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$classeDuBeton$$</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$classeBeton$$</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
@@ -183,7 +180,7 @@
 
             <fo:table-row>
               <fo:table-cell><fo:block>Type de la fibre</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: DRAMIX $$typeDeFibre$$</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: DRAMIX 3D 80/60GG</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
@@ -193,7 +190,7 @@
 
             <fo:table-row>
               <fo:table-cell><fo:block>Armatures de renfort</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$renfortHA$$/ml</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$renfortHA$$/</fo:block></fo:table-cell>
             </fo:table-row>
 
           </fo:table-body>
@@ -201,7 +198,7 @@
 
         <fo:block space-before="3mm"> Des essais de carractérisation du matériau béton fibré ont été réalisé selon la norme EN-14651. Il s'agit des essais de flexion 3 points sur des éprouvettes entaillées de dimensions 15x15x55cm. Les carractéristiques mécaniques du béton fibré sont présentés dans le tableau suivant :</fo:block>
 
-        <fo:table text-align="center">
+        <fo:table line-height="6mm" text-align="center">
           <fo:table-column column-width="30mm"/>
           <fo:table-column column-width="20mm"/>
 
@@ -248,13 +245,13 @@
                   space-before="3mm"
                   space-after="3mm">
           1.4 Paramètres du sol </fo:block>
-        <fo:table>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="50mm"/>
           <fo:table-body>
             <fo:table-row>
               <fo:table-cell><fo:block>Résistance du sol qELS</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$resistanceSol$$bars</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$resistanceSol$$ Mpa</fo:block></fo:table-cell>
             </fo:table-row>
 
             <fo:table-row>
@@ -281,7 +278,7 @@
                   space-before="3mm">
           2. Hypothèses de calcul </fo:block>
 
-        <fo:table>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="60mm"/>
           <fo:table-column column-width="80mm"/>
           <fo:table-body>
@@ -306,7 +303,7 @@
                   space-before="3mm"
                   space-after="3mm">
           2.1 Enrobage  </fo:block>
-        <fo:table>
+        <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="50mm"/>
           <fo:table-body>
@@ -355,7 +352,7 @@
                   space-after="3mm">
           3.1 Vérifications de structure - ELU :</fo:block>
 
-        <fo:table table-layout="fixed" width="100%" text-align="center" space-after="3mm">
+        <fo:table line-height="6mm" table-layout="fixed" width="100%" text-align="center" space-after="3mm">
           <fo:table-column column-number="1" column-width="25mm"></fo:table-column>
           <fo:table-column column-number="2" column-width="40mm"></fo:table-column>
           <fo:table-column column-number="3" column-width="40mm"></fo:table-column>
@@ -372,16 +369,16 @@
 
           <fo:table-body>
             <fo:table-row>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> Talon </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentAgissantTalon$$ </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentResistantTalon$$ </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$verificationFlexionTalon$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> Paroi </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentAgissantParoi$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentResistantParoi$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$verificationFlexionParoi$$ </fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> Rideau </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentAgissantRideau$$ </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentResistantRideau$$  </fo:block></fo:table-cell>
-              <fo:table-cell><fo:block border="solid 0.1mm black"> $$verificationFlexionRideau$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> Fond </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentAgissantFond$$ </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$momentResistantFond$$  </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block border="solid 0.1mm black"> $$verificationFlexionFond$$ </fo:block></fo:table-cell>
             </fo:table-row>
           </fo:table-body>
         </fo:table>
@@ -397,13 +394,13 @@
         <fo:block> Condition à vérifier selon (12.2.1) NF P-94-281 : Vd - R0 &lt; Rv,d  </fo:block>
         <fo:block> Où : </fo:block>
         <fo:block>
-          -	Vd est la valeur de calcul de la charge verticale transmise par le mur de soutènement au terrain<fo:block/>
+          -	Vd est la valeur de calcul de la charge verticale transmise au terrain<fo:block/>
           -	R0 est valeur du poids du volume de sol constitué du volume de la fondation sous le terrain
           après travaux et des sols compris entre la fondation et le terrain après travaux. <fo:block/>
           -	Rv,d est résistance nette de calcul du terrain sous la fondation du mur<fo:block/>
         </fo:block>
 
-        <fo:table text-align="center" space-before="3mm">
+        <fo:table line-height="6mm" text-align="center" space-before="3mm">
           <fo:table-column column-width="30mm"/>
           <fo:table-column column-width="30mm"/>
           <fo:table-column column-width="30mm"/>
@@ -424,183 +421,11 @@
               <fo:table-cell border="solid 0.1mm black"><fo:block> $$capacitePortanceSolELU$$ </fo:block></fo:table-cell>
               <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationPortanceELU$$ </fo:block></fo:table-cell>
             </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - CAR </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$effortVerticalELSCAR$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$poidsDuSol$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$capacitePortanceSolELSCAR$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationPortanceELSCAR$$ </fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - QP</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$effortVerticalELSQP$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$poidsDuSol$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$capacitePortanceSolELSQP$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationPortanceELSQP$$</fo:block></fo:table-cell>
-            </fo:table-row>
           </fo:table-body>
         </fo:table>
-
-        <fo:block font-size="12pt"
-                  font-weight="bold"
-                  font-family="sans-serif"
-                  space-before="3mm"
-                  space-after="3mm">
-          3.3 Vérification du glissement</fo:block>
-        <fo:block> Condition à vérifier selon (12.2.1) NF P-94-281 : Hd ≤ Rh,d + Rp,d  </fo:block>
-
-        <fo:block> Où : </fo:block>
-        <fo:block>
-          -	Hd est la valeur de calcul de la charge horizontale <fo:block/>
-          -	Rp,d est la valeur de calcul de la résistance frontale ou tangentielle de la fondation à l’effet de Hd. <fo:block/>
-          -	Rh,d est la valeur de calcul de la résistance au glissement de la fondation sur le terrain.  <fo:block/>
-        </fo:block>
-
-        <fo:table text-align="center" space-before="3mm">
-          <fo:table-column column-width="30mm"/>
-          <fo:table-column column-width="25mm"/>
-          <fo:table-column column-width="40mm"/>
-          <fo:table-column column-width="30mm"/>
-          <fo:table-column column-width="35mm"/>
-          <fo:table-body>
-            <fo:table-row >
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Combinaison </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Hd  (KN) </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Rp,d + Rh,d (KN) </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Avec ancrage? </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Vérification </fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELU </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$effortGlissementELU$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$resistanceGlissementELU$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$typeAncrage$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationGlissementELU$$ </fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - CAR </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$effortGlissementELSCAR$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$resistanceGlissementELSCAR$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$typeAncrage$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationGlissementELSCAR$$ </fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - QP</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$effortGlissementELSQP$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$resistanceGlissementELSQP$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$typeAncrage$$ </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationGlissementELSQP$$</fo:block></fo:table-cell>
-            </fo:table-row>
-          </fo:table-body>
-        </fo:table>
-
-        <fo:block font-size="12pt"
-                  font-weight="bold"
-                  font-family="sans-serif"
-                  space-before="3mm"
-                  space-after="3mm">
-          3.4 Vérification de l'excentrement (ou basculement)</fo:block>
-        <fo:block> Selon l’Eurocode 7 et la norme NF P 94-261 qui traite des fondations superficielles, il convient de vérifier la stabilité par la relation suivante :</fo:block>
-
-        <fo:table text-align="center" space-before="3mm">
-          <fo:table-column column-width="30mm"/>
-          <fo:table-column column-width="35mm"/>
-          <fo:table-column column-width="30mm"/>
-          <fo:table-column column-width="60mm"/>
-          <fo:table-body>
-            <fo:table-row >
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Combinaison </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Excentricité (m) </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Conditions </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Vérification </fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELU</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$exentriciteELU$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> 1-2e/B ≥ 1/15</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationExcentrementELU$$</fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - CAR</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$exentriciteELSCAR$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> 1-2e/B ≥ 1/2 </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationExcentrementELSCAR$$</fo:block></fo:table-cell>
-            </fo:table-row>
-            <fo:table-row>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> ELS - QP</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$exentriciteELSQP$$</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> 1-2e/B ≥ 2/3</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block> $$verificationExcentrementELSQP$$</fo:block></fo:table-cell>
-            </fo:table-row>
-          </fo:table-body>
-        </fo:table>
-
-        <fo:block> Où : </fo:block>
-        <fo:block>
-          -	e est l’excentricité du chargement par rapport au centre géométrique à la base du mur<fo:block/>
-          -	B est largeur du mur. Donc, B = $$largeurDuMur$$m <fo:block/>
-        </fo:block>
-
-
-        <fo:block font-size="16pt"
-                  font-weight="bold"
-                  space-after="3mm"
-                  space-before="3mm"
-                  font-family="sans-serif"
-                  break-before="page">
-          4. Conclusions </fo:block>
-
-        <fo:block font-size="24pt"
-                  font-family="sans-serif"
-                  line-height="32pt"
-                  space-after.optimum="15pt"
-                  background-color="$$conclusionNDCcolor$$"
-                  text-align="center"
-                  padding-top="3pt"
-                  space-before="6mm">
-          $$conclusionNDC$$</fo:block>
-
-        <fo:block font-size="16pt"
-                  font-weight="bold"
-                  space-after="3mm"
-                  space-before="3mm"
-                  font-family="sans-serif"
-                  break-before="page">
-          5. Schéma de ferraillage </fo:block>
-        <fo:block text-align="center">
-          <fo:external-graphic src="url(..//xsl/schemaFerraillage.png)"
-                               content-width="12cm"
-                               scaling="uniform"
-          />
-        </fo:block>
-
-        <fo:block start-indent="10mm" >
-          <fo:table>
-            <fo:table-column column-width="80mm"/>
-            <fo:table-column column-width="50mm"/>
-
-            <fo:table-body>
-              <fo:table-row>
-                <fo:table-cell><fo:block> Armatures principales</fo:block></fo:table-cell>
-                <fo:table-cell><fo:block>: $$renfortHA$$/ml</fo:block></fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell><fo:block> Longeur des armatures Talon - LH </fo:block></fo:table-cell>
-                <fo:table-cell><fo:block>: $$LV$$m</fo:block></fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell><fo:block> Longeur des armatures Rideau - LV</fo:block></fo:table-cell>
-                <fo:table-cell><fo:block>: $$LH$$m</fo:block> </fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell><fo:block> Armatures sercondaires</fo:block></fo:table-cell>
-                <fo:table-cell><fo:block>: $$armaturesSecondaires$$</fo:block></fo:table-cell>
-              </fo:table-row>
-            </fo:table-body>
-          </fo:table>
-        </fo:block>
 
       </fo:block>
+      <fo:block id="last-page"> </fo:block>
     </fo:flow>
   </fo:page-sequence>
 </fo:root>

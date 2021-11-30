@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.amocer.caniveau.ndc.DonneesNDC;
 import org.amocer.caniveau.ndc.DonneesNDC2;
 import org.amocer.caniveau.ndc.EnregistrateurDePDFs;
 import org.amocer.caniveau.ndc.PDFHandler;
@@ -209,6 +210,7 @@ public class Controller implements Initializable {
     private void imprimerNDC() {
         Platform.runLater(()->{
             FileChooser fileChooser = new FileChooser();
+            Calcul.ResultatDuCalcul resultatDuCalcul = resultatsTableView.getSelectionModel().getSelectedItem();
 
             //Set extension filter for text files
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
@@ -216,7 +218,7 @@ public class Controller implements Initializable {
 
             //Show save file dialog
             File file = fileChooser.showSaveDialog(imprimerNDCButton.getScene().getWindow());
-            EnregistrateurDePDFs.enregistrerPDF(lireDonnees(), new File("xsl/ndcModel.fo"), file, "$$");
+            EnregistrateurDePDFs.enregistrerPDF(new DonneesNDC(resultatDuCalcul), new File("xsl/ndcModel.fo"), file, "$$");
         });
     }
 
@@ -253,8 +255,6 @@ public class Controller implements Initializable {
 
         //calcul des resultats
         List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
-
-
 
         //Affichage des resultats
         resultatsTableView.setItems(FXCollections.observableList(resultats));

@@ -203,10 +203,10 @@
                </font>
             </Label>
             <Label text="Epaisseur de la paroi personalisé" GridPane.rowIndex="21" />
-            <TextField fx:id="epaisseurParoiChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
+            <TextField fx:id="epaisseurParoiChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
             <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="21" />
             <Label text="Epaisseur du fond personalisé" GridPane.rowIndex="22" />
-            <TextField fx:id="epaisseurFondChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="10.0" GridPane.columnIndex="2" GridPane.rowIndex="22" />
+            <TextField fx:id="epaisseurFondChoisiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="22" />
             <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="22" />
             <Label prefHeight="45.0" prefWidth="148.0" text="eP" GridPane.columnIndex="1" GridPane.rowIndex="21" />
             <Label prefHeight="45.0" prefWidth="148.0" text="eF" GridPane.columnIndex="1" GridPane.rowIndex="22" />

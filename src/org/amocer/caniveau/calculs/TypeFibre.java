@@ -38,7 +38,7 @@ public class TypeFibre {
         }
     }
 
-    static TypeFibre getFibre(String nomFibre, String nomBeton){
+    public static TypeFibre getFibre(String nomFibre, String nomBeton){
         return typesDeFibre.get(nomFibre+nomBeton);
     }
 

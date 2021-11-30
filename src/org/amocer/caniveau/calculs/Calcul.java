@@ -56,10 +56,8 @@ public class Calcul {
     public List<Calcul.ResultatDuCalcul> calculer() {
         List<ResultatDuCalcul> resultats = new LinkedList<>();
 
-        double momentParoiELU = 1.35*poussee_Terre_Paroi().momentAgissant + 1.5*(poussee_ChargePontuelle_Paroi().momentAgissant
-                + poussee_ChargeUniforme_Paroi().momentAgissant + poussee_ChargeRoulante_Paroi_Max().momentAgissant);
-        double effortTranchantParoiELU = 1.35*poussee_Terre_Paroi().effortTranchant + 1.5*(poussee_ChargePontuelle_Paroi().effortTranchant
-                + poussee_ChargeUniforme_Paroi().effortTranchant + poussee_ChargeRoulante_Paroi_Max().effortTranchant);
+        double momentParoiELU = getMomentParoiELU();
+        double effortTranchantParoiELU = getEffortTranchantParoiELU();
 
         List<String> listeTypeBeton = Arrays.asList("C25/30","C30/37","C40/50");
         for (String typeBeton : listeTypeBeton) {
@@ -73,9 +71,9 @@ public class Calcul {
                 double poidsFibre = dosage*volumeBeton;
                 double poidsArmatures = 0.0;
                 double resistanceMinSol = getresistanceMinSol(epaisseurMiniParoi, epaisseurMiniFond);
-                int joursPourLevage = getjoursPourLevagel(epaisseurMiniParoi, epaisseurMiniFond);
+                int joursPourLevage = getjoursPourLevagel(typeBeton, epaisseurMiniParoi, epaisseurMiniFond);
                 String renfortMini = "";
-                resultats.add(new ResultatDuCalcul(typeBeton, dosage, renfortMini, epaisseurMiniParoi,epaisseurMiniFond,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage));
+                resultats.add(new ResultatDuCalcul(typeBeton, dosage, renfortMini, epaisseurMiniParoi,epaisseurMiniFond,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage,donnee));
             }
         }
         for (String typeBeton : listeTypeBeton) {
@@ -88,14 +86,35 @@ public class Calcul {
         return resultats;
     }
 
+    private double getEffortTranchantParoiELU() {
+        double effortTranchantParoiELU = 1.35*poussee_Terre_Paroi().effortTranchant + 1.5*(poussee_ChargePontuelle_Paroi().effortTranchant
+                + poussee_ChargeUniforme_Paroi().effortTranchant + poussee_ChargeRoulante_Paroi_Max().effortTranchant);
+        return effortTranchantParoiELU;
+    }
+    private double getEffortTranchantFondELU(double epaisseurParoiChoisie) {
+        double effortTranchantFondELU = 1.35*poussee_Terre_Fond(epaisseurParoiChoisie).effortTranchant + 1.5* poussee_ChargeRoulante_Fond_Max().effortTranchant;
+        return effortTranchantFondELU;
+    }
+
+    public double getMomentParoiELU() {
+        return 1.35*poussee_Terre_Paroi().momentAgissant + 1.5*(poussee_ChargePontuelle_Paroi().momentAgissant
+                    + poussee_ChargeUniforme_Paroi().momentAgissant + poussee_ChargeRoulante_Paroi_Max().momentAgissant);
+    }
+
+
+    public double getMomentFondELU(double epaisseurParoiChoisie) {
+        double momentParoiELU = getMomentParoiELU();
+        return Math.max(momentParoiELU, 1.35 * poussee_Terre_Fond(epaisseurParoiChoisie).momentAgissant + 1.5 * poussee_ChargeRoulante_Fond_Max().momentAgissant);
+    }
+
     public ResultatDuCalcul getResultatPersonalise(double epaisseurParoiChoisie, double epaisseurFondChoisie, String typeBeton, double momentParoiELU, double effortTranchantParoiELU) {
         TypeFibre typeFibre = TypeFibre.getFibre(nomFibre, typeBeton);
-        double momentFondELU = Math.max(momentParoiELU, 1.35*poussee_Terre_Fond(epaisseurParoiChoisie).momentAgissant + 1.5* poussee_ChargeRoulante_Fond_Max().momentAgissant);
-        double effortTranchantFondELU = 1.35*poussee_Terre_Fond(epaisseurParoiChoisie).effortTranchant + 1.5* poussee_ChargeRoulante_Fond_Max().effortTranchant;
+        double momentFondELU = getMomentFondELU(epaisseurParoiChoisie);
+        double effortTranchantFondELU = getEffortTranchantFondELU(epaisseurParoiChoisie);
         int nombreArmature = 0;
         int dosage = 0;
         int diametreArmature = 0;
-        List<Integer> diametres = Arrays.asList(8,10,12,14,16,20);
+        List<Integer> diametres = Arrays.asList(8,10,12,14,16,20,22,24);
         myLabel:
         for (int dia:diametres) {
             for (int nombre = 0; nombre <= 20; nombre++) {
@@ -104,9 +123,9 @@ public class Calcul {
                     nombreArmature = nombre;
                     diametreArmature = dia;
                     dosage = dos;
-                    double momentResistantParoi = momentResistant(typeBeton,nomFibre, dosage,epaisseurParoiChoisie/100.0, sectionsArmatures);
+                    double momentResistantParoi = getMomentResistantParoi(epaisseurParoiChoisie, typeBeton, dosage, sectionsArmatures);
                     double effortTranchantResistantParoi =  effortTranchantResistant(typeBeton,nomFibre, dosage,epaisseurParoiChoisie/100.0, sectionsArmatures);
-                    double momentResistantFond = momentResistant(typeBeton,nomFibre, dosage,epaisseurFondChoisie/100.0, sectionsArmatures);
+                    double momentResistantFond = getMomentResistantFond(epaisseurFondChoisie, typeBeton, dosage, sectionsArmatures);
                     double effortTranchantResistantFond =  effortTranchantResistant(typeBeton,nomFibre, dosage,epaisseurFondChoisie/100.0, sectionsArmatures);
                     if ((momentParoiELU <= momentResistantParoi) && (effortTranchantParoiELU <= effortTranchantResistantParoi)
                             && (momentFondELU <= momentResistantFond) && (effortTranchantFondELU <= effortTranchantResistantFond)) {
@@ -125,9 +144,18 @@ public class Calcul {
         double poidsFibre = dosage*volumeBeton;
         double poidsArmatures = 8750.0*getSectionsArmatures(nombreArmature,diametreArmature)*3*longeur/10000.0;
         double resistanceMinSol = getresistanceMinSol(epaisseurParoiChoisie, epaisseurFondChoisie);
-        int joursPourLevage = getjoursPourLevagel(epaisseurParoiChoisie, epaisseurFondChoisie);
-        return new ResultatDuCalcul(typeBeton, dosage, renfortMini, epaisseurParoiChoisie,epaisseurFondChoisie,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage);
+        int joursPourLevage = getjoursPourLevagel(typeBeton, epaisseurParoiChoisie, epaisseurFondChoisie);
+        return new ResultatDuCalcul(typeBeton, dosage, renfortMini, epaisseurParoiChoisie,epaisseurFondChoisie,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage,donnee);
     }
+
+    public double getMomentResistantFond(double epaisseurFondChoisie, String typeBeton, int dosage, double sectionsArmatures) {
+        return momentResistant(typeBeton, nomFibre, dosage, epaisseurFondChoisie / 100.0, sectionsArmatures);
+    }
+
+    public double getMomentResistantParoi(double epaisseurParoiChoisie, String typeBeton, int dosage, double sectionsArmatures) {
+        return momentResistant(typeBeton, nomFibre, dosage, epaisseurParoiChoisie / 100.0, sectionsArmatures);
+    }
+
 
     private int[] getArmature(double sectionArmatures) {
         List<Integer> diametres = Arrays.asList(8,10,12,14,16);
@@ -147,7 +175,7 @@ public class Calcul {
 
     private double getEpaisseurMiniFond(double momentParoiELU, String typeBeton, int dosage, double epaisseurMiniParoi) {
         double epaisseurMiniFond = 4.5;
-        double momentFondELU = Math.max(momentParoiELU, 1.35*poussee_Terre_Fond(epaisseurMiniParoi).momentAgissant + 1.5* poussee_ChargeRoulante_Fond_Max().momentAgissant);
+        double momentFondELU = getMomentFondELU(epaisseurMiniParoi);
         double effortTranchantFondELU = 1.35*poussee_Terre_Fond(epaisseurMiniParoi).effortTranchant + 1.5* poussee_ChargeRoulante_Fond_Max().effortTranchant;
         double momentResistantFond;
         double effortTranchantResistantFond;
@@ -177,13 +205,27 @@ public class Calcul {
     }
 
     private double getresistanceMinSol(double epaisseurMiniParoi, double epaisseurMiniFond) {
-        double effortVerticalELU = (1.35*poussee_Terre_Fond(epaisseurMiniParoi).pressionMax+1.5*poussee_ChargeRoulante_Fond_Max().pressionMax)*largeur;
-        double resistanceMinSol = effortVerticalELU/largeur/10000.0;
+        double effortVerticalELU = getEffortVerticalELU(epaisseurMiniParoi);
+        double resistanceMinSol = effortVerticalELU/largeur/1.5/10000.0;
         return resistanceMinSol;
     }
-    private int getjoursPourLevagel(double epaisseurMiniParoi, double epaisseurMiniFond) {
+
+    public double getEffortVerticalELU(double epaisseurMiniParoi) {
+        double effortVerticalELU = (1.35*poussee_Terre_Fond(epaisseurMiniParoi).pressionMax+1.5*poussee_ChargeRoulante_Fond_Max().pressionMax)*largeur;
+        return effortVerticalELU;
+    }
+
+    public int getjoursPourLevagel(String nomBeton, double epaisseurMiniParoi, double epaisseurMiniFond) {
         double contrainteTraction = calculerPressionLevage(epaisseurMiniFond).momentAgissant*6.0/Math.pow(epaisseurMiniFond,2)/10000;
-        int joursPourLevage = 3;
+        int joursPourLevage = 0;
+        for (int jour = 3; jour < 28; jour++) {
+            TypeBeton typeBeton = TypeBeton.get(nomBeton);
+            double resistanceTractionBeton = typeBeton.getResistanceTractionTemps(jour);
+            if (contrainteTraction < resistanceTractionBeton) {
+                joursPourLevage = jour;
+                break;
+            }
+        }
         return joursPourLevage;
     }
 
@@ -369,10 +411,10 @@ public class Calcul {
         public final double poidsArmatures;
         public final double resistanceMinSol;
         public final double joursPourLevage;
+        public Donnee donnee;
 
 
-
-        public ResultatDuCalcul(String typeBeton, int dossage, String renfortMini, double epaisseurMinParoi, double epaisseurMinFond, double volumeBeton, double poidsFibre, double poidsArmatures, double resistanceMinSol, int joursPourLevage) {
+        public ResultatDuCalcul(String typeBeton, int dossage, String renfortMini, double epaisseurMinParoi, double epaisseurMinFond, double volumeBeton, double poidsFibre, double poidsArmatures, double resistanceMinSol, int joursPourLevage, Donnee donnee) {
             this.typeBeton = typeBeton;
             this.dossage = dossage;
             this.renfortMini = renfortMini;
@@ -383,6 +425,7 @@ public class Calcul {
             this.poidsArmatures = poidsArmatures;
             this.resistanceMinSol = resistanceMinSol;
             this.joursPourLevage = joursPourLevage;
+            this.donnee = donnee;
         }
     }
 }
