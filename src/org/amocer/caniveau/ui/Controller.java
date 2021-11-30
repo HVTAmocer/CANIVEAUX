@@ -15,12 +15,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.amocer.caniveau.ndc.DonneesNDC;
+import org.amocer.caniveau.ndc.DonneesNDC2;
 import org.amocer.caniveau.ndc.EnregistrateurDePDFs;
+import org.amocer.caniveau.ndc.PDFHandler;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -142,6 +147,7 @@ public class Controller implements Initializable {
 
         verifierButton.setOnAction(e -> verifier());
         imprimerNDCButton.setOnAction(e -> imprimerNDC());
+/*        imprimerNDCButton.setOnAction(e->exportNDC(imprimerNDCButton));*/
     }
 
     private void changerImage() {
@@ -210,6 +216,30 @@ public class Controller implements Initializable {
             File file = fileChooser.showSaveDialog(imprimerNDCButton.getScene().getWindow());
             EnregistrateurDePDFs.enregistrerPDF(lireDonnees(), new File("xsl/ndcModel.fo"), file, "$$");
         });
+    }
+
+    private void exportNDC(Button button) {
+        verifier();
+
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File pdfFile = fileChooser.showSaveDialog(button.getScene().getWindow());
+
+        Donnee donnee = lireDonnees();
+        Calcul calcul= new Calcul(donnee);
+        List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
+        DonneesNDC2 data = new DonneesNDC2();
+        data.setResultats(resultats);
+
+        PDFHandler handler = new PDFHandler();
+
+        try {
+            ByteArrayOutputStream streamSource = handler.getXMLSource(data);
+            handler.createPDFFile(pdfFile, streamSource,new File("xsl/template.xsl"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void verifier() {

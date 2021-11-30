@@ -31,7 +31,7 @@
         </Menu>
     </MenuBar>
     <Pane prefHeight="779.0" prefWidth="1270.0">
-        <ImageView fx:id="coupe3DImageView" fitHeight="415.0" fitWidth="848.0" layoutX="403.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="coupe3DImageView" fitHeight="385.0" fitWidth="730.0" layoutX="506.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
       <GridPane hgap="2.0" layoutX="9.0" layoutY="-128.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="1245.0" vgap="2.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="125.0" />
@@ -133,7 +133,7 @@
             <TextField fx:id="hauteurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="largeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Label prefHeight="17.0" prefWidth="206.0" text="Hauteur du remblai (sans couvercle)" GridPane.rowIndex="5" />
-            <TextField fx:id="hauteurRemblaiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="hauteurRemblaiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="5" />
