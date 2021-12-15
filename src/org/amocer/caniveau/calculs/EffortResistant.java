@@ -4,14 +4,14 @@ public class EffortResistant {
 
     public static double momentResistantELUBetonFibre(double epsCu,
                                                       double fcd, double fR1d, double fR3d,
-                                                      double hauteurSection, double largeurSection, double sectionAcier) {
+                                                      double hauteurSection, double largeurSection,
+                                                      double sectionAcier) {
         fcd = fcd*Math.pow(10,6);
         fR1d = fR1d*Math.pow(10,6);
         fR3d = fR3d*Math.pow(10,6);
 
         double B = largeurSection;
         double h= hauteurSection;
-        // double facteurDOrientation = 1.0;
         double facteurDOrientation = Math.min(0.5 + 0.5 / 1.5 * hauteurSection * largeurSection,0.9);
 
         double fyd = 500.0 / 1.15 * Math.pow(10,6);

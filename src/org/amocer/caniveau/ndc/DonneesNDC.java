@@ -102,7 +102,7 @@ public class DonneesNDC {
         this.chargePontuelle = df1.format(donnee.chargePontuelle);
         this.distanceChargePontuelle = df1.format(donnee.distanceChargePontuelle);
         this.typeChargeRoulante = donnee.typeChargeRoulante;
-        this.chargeRoulante = df1.format(donnee.chargeRoulante);
+        this.chargeRoulante = df1.format(calcul.chargeRoulante);
         this.poidsCouvercle = df1.format(donnee.poidsCouvercle);
 
 

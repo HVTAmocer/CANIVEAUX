@@ -52,13 +52,59 @@
                   space-after="3mm"
                   space-before="3mm"
                   font-family="sans-serif">
-          1. Données </fo:block>
+          1. Introductions générales </fo:block>
+        <fo:block font-size="12pt"
+                  font-weight="bold"
+                  font-family="sans-serif"
+                  space-before="3mm"
+                  space-after="3mm">
+          1.1 Contexte du projet:</fo:block>
+        <fo:block start-indent="1cm">$$contexteProjet$$ </fo:block>
+
+        <fo:table line-height="6mm">
+          <fo:table-column column-width="70mm"/>
+          <fo:table-column column-width="50mm"/>
+          <fo:table-body>
+
+            <fo:table-row>
+              <fo:table-cell><fo:block>Nom du projet </fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$chantier$$ </fo:block></fo:table-cell>
+            </fo:table-row>
+            <fo:table-row>
+              <fo:table-cell><fo:block>Localisation</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$localisation$$ </fo:block></fo:table-cell>
+            </fo:table-row>
+
+            <fo:table-row>
+              <fo:table-cell><fo:block>Département</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$departement$$ </fo:block></fo:table-cell>
+            </fo:table-row>
+
+            <fo:table-row>
+              <fo:table-cell><fo:block>Responsable du projet</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$responsableProjet$$</fo:block></fo:table-cell>
+            </fo:table-row>
+
+            <fo:table-row>
+              <fo:table-cell><fo:block>Numéro d'affaire</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$numeroAffaire$$</fo:block></fo:table-cell>
+            </fo:table-row>
+
+            <fo:table-row>
+              <fo:table-cell><fo:block>Date de réalisation</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$dateRealisation$$</fo:block></fo:table-cell>
+            </fo:table-row>
+
+          </fo:table-body>
+        </fo:table>
+
         <fo:block font-size="12pt"
                   font-weight="bold"
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
           1.1 Géométrie:</fo:block>
+
         <fo:table line-height="6mm">
           <fo:table-column column-width="70mm"/>
           <fo:table-column column-width="15mm"/>

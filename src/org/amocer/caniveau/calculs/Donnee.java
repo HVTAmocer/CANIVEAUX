@@ -33,11 +33,8 @@ public class Donnee {
     public final double distanceChargePontuelle;
 
     public final String typeChargeRoulante;
-    public final double chargeRoulante;
 
     public final double poidsCouvercle;
-
-
 
 
     public Donnee(
@@ -70,7 +67,6 @@ public class Donnee {
             double chargePontuelle,
             double distanceChargePontuelle,
             String typeChargeRoulante,
-            double chargeRoulante,
             double poidsCouvercle)
     {
         this.chantier = chantier;
@@ -102,8 +98,6 @@ public class Donnee {
         this.chargePontuelle = chargePontuelle;
         this.distanceChargePontuelle = distanceChargePontuelle;
         this.typeChargeRoulante = typeChargeRoulante;
-        this.chargeRoulante = chargeRoulante;
         this.poidsCouvercle = poidsCouvercle;
-
     }
 }

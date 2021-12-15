@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -70,8 +71,6 @@ public class Controller implements Initializable {
     @FXML
     private ChoiceBox<String> typeChargeRoulanteChoiceBox;
     @FXML
-    private TextField chargeRoulantTextField;
-    @FXML
     private TextField poidsCouvercleTextField;
     @FXML
     private TextField hauteurRemblaiTextField;
@@ -112,7 +111,10 @@ public class Controller implements Initializable {
     private TableColumn<Calcul.ResultatDuCalcul, String> resistanceMinSolColumn;
 
     @FXML
-    private TableColumn<Calcul.ResultatDuCalcul, String> resistanceBetonLevageColumn;
+    private TableColumn<Calcul.ResultatDuCalcul, String> joursPourLevageColumn;
+
+    @FXML
+    private TableColumn<Calcul.ResultatDuCalcul, String> messageColumn;
 
     @FXML
     private TextField poidsVolumiqueSolTextField;
@@ -135,7 +137,7 @@ public class Controller implements Initializable {
         typeCaniveauChoiceBox.getSelectionModel().selectFirst();
         typeCaniveauChoiceBox.setOnAction(event -> changerImage());
 
-        typeFibreChoiceBox.setItems(FXCollections.observableList(Arrays.asList("3D 80/60GG")));
+        typeFibreChoiceBox.setItems(FXCollections.observableList(Collections.singletonList("3D 80/60GG")));
         typeFibreChoiceBox.getSelectionModel().selectFirst();
 
         typeCouvercleChoiceBox.setItems(FXCollections.observableList(Arrays.asList(TypeCouvercle.DALLE_BA,TypeCouvercle.CAILLEBOTIS)));
@@ -145,7 +147,8 @@ public class Controller implements Initializable {
                 TypeChargeRoulante.ESSIEU_3T.type,
                 TypeChargeRoulante.ESSIEU_6T.type,
                 TypeChargeRoulante.ESSIEU_13T.type,
-                TypeChargeRoulante.PIETON.type)));
+                TypeChargeRoulante.PIETON.type,
+                TypeChargeRoulante.NON.type)));
         typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
 
         verifierButton.setOnAction(e -> verifier());
@@ -167,7 +170,6 @@ public class Controller implements Initializable {
             poidsCouvercleTextField.setDisable(false);
             typeChargeRoulanteChoiceBox.setDisable(false);
             typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
-            chargeRoulantTextField.setDisable(false);
         }else if (typeCaniveauChoiceBox.getValue().equals(TypeCaniveau.COUVERCLE)){
             InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/2.png");
             coupe3DImageView.setImage(new Image(coupeImage));
@@ -183,7 +185,6 @@ public class Controller implements Initializable {
             poidsCouvercleTextField.setDisable(false);
             typeChargeRoulanteChoiceBox.setDisable(false);
             typeChargeRoulanteChoiceBox.getSelectionModel().selectFirst();
-            chargeRoulantTextField.setDisable(false);
         }else {
             InputStream coupeImage = VerificateurDeLicence.class.getResourceAsStream("resources/3.png");
             coupe3DImageView.setImage(new Image(coupeImage));
@@ -197,8 +198,6 @@ public class Controller implements Initializable {
             poidsCouvercleTextField.setDisable(true);
             typeChargeRoulanteChoiceBox.setValue(TypeChargeRoulante.NON.type);
             typeChargeRoulanteChoiceBox.setDisable(true);
-            chargeRoulantTextField.setText(String.valueOf(0));
-            chargeRoulantTextField.setDisable(true);
         }
     }
 
@@ -210,6 +209,7 @@ public class Controller implements Initializable {
     private void imprimerNDC() {
         Platform.runLater(()->{
             FileChooser fileChooser = new FileChooser();
+            // Il faut choisir une ligne du tableau
             Calcul.ResultatDuCalcul resultatDuCalcul = resultatsTableView.getSelectionModel().getSelectedItem();
 
             //Set extension filter for text files
@@ -268,7 +268,8 @@ public class Controller implements Initializable {
         poidsArmaturesTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().poidsArmatures))));
         poidsFibreTableColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().poidsFibre))));
         resistanceMinSolColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(new DecimalFormat("#.##").format(ligne.getValue().resistanceMinSol))));
-        resistanceBetonLevageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().joursPourLevage)));
+        joursPourLevageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(String.valueOf(ligne.getValue().joursPourLevage)));
+        messageColumn.setCellValueFactory(ligne -> new SimpleStringProperty(ligne.getValue().message));
     }
 
     private Donnee lireDonnees() {
@@ -298,7 +299,6 @@ public class Controller implements Initializable {
                 Double.parseDouble(chargePontuelleTextField.getText()),
                 Double.parseDouble(distanceChargePontuelleTextField.getText()),
                 typeChargeRoulanteChoiceBox.getValue(),
-                Double.parseDouble(chargeRoulantTextField.getText()),
                 Double.parseDouble(poidsCouvercleTextField.getText()));
     }
 
