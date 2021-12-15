@@ -305,8 +305,8 @@ public class Calcul {
         longeurCharge = Z2-Z1 ;
         double brasLevier = Math.max(0,hauteur + epaisseurCouvercle + hauteurRemplai - Z2 + 2.0*(Z2-Z1)/3.0);
         double forceTotale = pressionMax*longeurCharge*largueurCharge/6;
-        double momentAgissant = forceTotale*brasLevier/Math.min(2.0,longeur);
-        double effortTranchant = forceTotale/Math.min(2.0,longeur);
+        double momentAgissant = forceTotale*brasLevier/Math.max(longeur,1.0);
+        double effortTranchant = forceTotale/Math.max(longeur,1.0);
         return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
     }
 
@@ -315,7 +315,11 @@ public class Calcul {
     }
 
     public EffortAgissant poussee_ChargeRoulante_Paroi(double distanceChargeRoulante) {
-        return chargePontuelle_Paroi(chargeRoulante/2, distanceChargeRoulante);
+        if (longeur <= 2.0) {
+            return chargePontuelle_Paroi(chargeRoulante/2, distanceChargeRoulante);
+        }else {
+            return chargePontuelle_Paroi(chargeRoulante, distanceChargeRoulante);
+        }
     }
 
     public EffortAgissant poussee_ChargeRoulante_Paroi_Max() {
@@ -336,10 +340,10 @@ public class Calcul {
                 pressionMin = effortAgissant.pressionMin;
                 longeurCharge = effortAgissant.longeurCharge;
                 momentAgissantMax = momentAgissant;
-                effortTranchant =effortAgissant.effortTranchant;
+                effortTranchant = effortAgissant.effortTranchant;
             }
         }
-        return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
+        return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissantMax, effortTranchant);
     }
 
 
