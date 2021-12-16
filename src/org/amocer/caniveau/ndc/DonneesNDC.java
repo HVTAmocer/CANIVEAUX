@@ -63,10 +63,12 @@ public class DonneesNDC {
     private final String verificationPortanceELU;
 
 
+
+
     public DonneesNDC(Calcul.ResultatDuCalcul resultatDuCalcul) {
         Donnee donnee = resultatDuCalcul.donnee;
+        Calcul calcul = new Calcul(donnee);
         TypeFibre typeFibre = TypeFibre.getFibre(donnee.nomFibre,resultatDuCalcul.typeBeton);
-        Calcul calcul = new Calcul(resultatDuCalcul.donnee);
         DecimalFormat df2 = new DecimalFormat("0.00");
         DecimalFormat df1 = new DecimalFormat("0.0");
         DecimalFormat df0 = new DecimalFormat("0");
@@ -121,17 +123,16 @@ public class DonneesNDC {
         this.fR4 = df1.format(typeFibre.fr4(resultatDuCalcul.dossage));
 
         this.momentAgissantParoi = df1.format(calcul.getMomentParoiELU());
-        this.momentResistantParoi = df1.format(calcul.getMomentParoiELU());
-        this.momentAgissantFond = df1.format(calcul.getMomentFondELU(donnee.epaisseurFondChoisie));
-        this.momentResistantFond= df1.format(calcul.getMomentParoiELU());
+        this.momentResistantParoi = df1.format(calcul.getMomentResistantParoi(resultatDuCalcul.epaisseurMinParoi,resultatDuCalcul.typeBeton,resultatDuCalcul.dossage, Calcul.getSectionsArmatures(resultatDuCalcul.nombreArmatures,resultatDuCalcul.diametreArmatures)));
+        this.momentAgissantFond = df1.format(calcul.getMomentFondELU(resultatDuCalcul.epaisseurMinParoi));
+        this.momentResistantFond= df1.format(calcul.getMomentResistantParoi(resultatDuCalcul.epaisseurMinFond,resultatDuCalcul.typeBeton,resultatDuCalcul.dossage, Calcul.getSectionsArmatures(resultatDuCalcul.nombreArmatures,resultatDuCalcul.diametreArmatures)));
         this.verificationFlexionParoi = "OK";
         this.verificationFlexionFond = "OK";
 
-        this.effortVerticalELU = df1.format(calcul.getEffortVerticalELU(donnee.epaisseurParoiChoisie));
+        this.effortVerticalELU = df1.format(calcul.getEffortVerticalELU(resultatDuCalcul.epaisseurMinParoi,resultatDuCalcul.epaisseurMinFond));
         this.poidsDuSol = df1.format(0.0);
-        this.capacitePortanceSolELU = df1.format(calcul.getEffortVerticalELU(donnee.epaisseurParoiChoisie));
+        this.capacitePortanceSolELU = df1.format(calcul.getEffortVerticalELU(resultatDuCalcul.epaisseurMinParoi,resultatDuCalcul.epaisseurMinFond));
         this.verificationPortanceELU = "OK";
     }
-
 }
 

@@ -1,7 +1,7 @@
 package org.amocer.caniveau.calculs;
 
 public enum TypeCaniveau {
-            REMBAI,
+            REMBLAI,
             COUVERCLE,
             OUVERT
 }

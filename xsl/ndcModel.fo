@@ -103,7 +103,7 @@
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.1 Géométrie:</fo:block>
+          1.2 Géométrie:</fo:block>
 
         <fo:table line-height="6mm">
           <fo:table-column column-width="70mm"/>
@@ -166,7 +166,7 @@
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.2 Chargements </fo:block>
+          1.3 Chargements </fo:block>
         <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="15mm"/>
@@ -209,7 +209,7 @@
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.3 Matériaux </fo:block>
+          1.4 Matériaux </fo:block>
         <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="50mm"/>
@@ -236,7 +236,7 @@
 
             <fo:table-row>
               <fo:table-cell><fo:block>Armatures de renfort</fo:block></fo:table-cell>
-              <fo:table-cell><fo:block>: $$renfortHA$$/</fo:block></fo:table-cell>
+              <fo:table-cell><fo:block>: $$renfortHA$$</fo:block></fo:table-cell>
             </fo:table-row>
 
           </fo:table-body>
@@ -290,7 +290,7 @@
                   font-family="sans-serif"
                   space-before="3mm"
                   space-after="3mm">
-          1.4 Paramètres du sol </fo:block>
+          1.5 Paramètres du sol </fo:block>
         <fo:table line-height="6mm">
           <fo:table-column column-width="80mm"/>
           <fo:table-column column-width="50mm"/>
@@ -407,8 +407,8 @@
           <fo:table-header line-height="8mm">
             <fo:table-row>
               <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Elements</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold">Moment agissant MEd (KNm)</fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold">Moment résistant MRd (KNm)</fo:block></fo:table-cell>
+              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold">Moment agissant MEd (daNm)</fo:block></fo:table-cell>
+              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold">Moment résistant MRd (daNm)</fo:block></fo:table-cell>
               <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold">Vérification MEd &lt; MRd</fo:block></fo:table-cell>
             </fo:table-row>
           </fo:table-header>
@@ -455,9 +455,9 @@
           <fo:table-body>
             <fo:table-row >
               <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Combinaison </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Vd (KN) </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Ro (KN) </fo:block></fo:table-cell>
-              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Rv,d (KN) </fo:block></fo:table-cell>
+              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Vd (daN) </fo:block></fo:table-cell>
+              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Ro (daN) </fo:block></fo:table-cell>
+              <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Rv,d (daN) </fo:block></fo:table-cell>
               <fo:table-cell border="solid 0.1mm black"><fo:block font-weight="bold"> Vérification </fo:block></fo:table-cell>
             </fo:table-row>
             <fo:table-row>
@@ -469,6 +469,21 @@
             </fo:table-row>
           </fo:table-body>
         </fo:table>
+
+        <fo:block font-size="16pt"
+                  font-weight="bold"
+                  space-after="3mm"
+                  space-before="3mm"
+                  font-family="sans-serif"
+                  break-before="page">
+          4. Principe de ferraillage </fo:block>
+        <fo:block text-align="center">
+          <fo:external-graphic src="url(..//xsl/schemaFerraillage.png)"
+                               content-width="12cm"
+                               scaling="uniform"
+          />
+        </fo:block>
+          <fo:block start-indent="50mm"> Armatures principales : $$renfortHA$$/ml</fo:block>
 
       </fo:block>
       <fo:block id="last-page"> </fo:block>

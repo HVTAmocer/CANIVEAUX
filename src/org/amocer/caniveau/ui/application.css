@@ -10,3 +10,11 @@
 .table-column {
   -fx-alignment: CENTER;
 }
+
+.red{
+    -fx-background-color:red;
+}
+
+.white{
+    -fx-background-color:white;
+}
