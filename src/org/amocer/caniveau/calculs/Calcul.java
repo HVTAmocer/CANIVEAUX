@@ -272,7 +272,30 @@ public class Calcul {
         return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
     }
 
-    private EffortAgissant chargePontuelle_Paroi(double F, double dF) {
+    public EffortAgissant chargePontuelle_Paroi(double F, double dF) {
+        double pressionMin = 0;
+        double pressionMax;
+        double longeurCharge;
+        double largueurCharge = 2*dF*trigoFunc.tan(27);
+        double Z1 = dF*trigoFunc.tan(angleFrottement);
+        double Z2 = dF*trigoFunc.tan(45+angleFrottement/2);
+        longeurCharge = Z2-Z1;
+        pressionMax = 4*F*trigoFunc.tan(45.0-angleFrottement/2)/Math.pow(dF,2)/(trigoFunc.tan(45+angleFrottement/2.0)-trigoFunc.tan(angleFrottement));
+        if (Z2 <= hauteurRemplai || Z1 >= (hauteur + epaisseurCouvercle + hauteurRemplai)) {
+            pressionMin = 0.0;
+            pressionMax = 0.0;
+        } else if (Z1 <= hauteurRemplai ) {
+            Z1 = hauteurRemplai;
+            Z2 =  hauteurRemplai + longeurCharge;
+        }
+        double brasLevier = Math.max(0,hauteur + epaisseurCouvercle + hauteurRemplai - Z2 + 2.0*(Z2-Z1)/3.0);
+        double forceTotale = pressionMax*longeurCharge*largueurCharge/6;
+        double momentAgissant = forceTotale*brasLevier/Math.max(longeur,1.0);
+        double effortTranchant = forceTotale/Math.max(longeur,1.0);
+        return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
+    }
+
+/*    public EffortAgissant chargePontuelle_Paroi(double F, double dF) {
         double pressionMin = 0;
         double pressionMax;
         double longeurCharge;
@@ -284,16 +307,17 @@ public class Calcul {
             pressionMin = 0.0;
             pressionMax = 0.0;
         } else if (Z1 <= hauteurRemplai ) {
-            pressionMax *= (Z2-hauteurRemplai)/Z2;
-            Z1 = hauteurRemplai;
+            pressionMax *= (Z2-hauteurRemplai)/(Z2-Z1);
+            largueurCharge *=(Z2-hauteurRemplai)/(Z2-Z1);
         }
+        Z1 = hauteurRemplai;
         longeurCharge = Z2-Z1 ;
         double brasLevier = Math.max(0,hauteur + epaisseurCouvercle + hauteurRemplai - Z2 + 2.0*(Z2-Z1)/3.0);
         double forceTotale = pressionMax*longeurCharge*largueurCharge/6;
         double momentAgissant = forceTotale*brasLevier/Math.max(longeur,1.0);
         double effortTranchant = forceTotale/Math.max(longeur,1.0);
         return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
-    }
+    }*/
 
     public EffortAgissant poussee_ChargePontuelle_Paroi() {
         return chargePontuelle_Paroi(chargePontuelle,distanceChargePontuelle);
@@ -338,7 +362,7 @@ public class Calcul {
         double pressionMin = poidsSolRemblai + poidsBeton;
         double pressionMax = pressionMin;
         double longeurCharge = largeur;
-        double momentAgissant = pressionMax*Math.pow(longeurCharge,2)/8;
+        double momentAgissant = Math.abs(pressionMax*Math.pow(longeurCharge,2)/8 - poussee_Terre_Paroi().momentAgissant);
         double effortTranchant  = pressionMax*longeurCharge/2;
                 return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
     }
