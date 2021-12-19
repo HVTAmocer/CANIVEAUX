@@ -470,6 +470,8 @@
           </fo:table-body>
         </fo:table>
 
+
+
         <fo:block font-size="16pt"
                   font-weight="bold"
                   space-after="3mm"

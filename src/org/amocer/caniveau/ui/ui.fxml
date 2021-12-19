@@ -133,13 +133,13 @@
             <Label prefHeight="45.0" prefWidth="148.0" text="Type de caniveau" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="typeCaniveauChoiceBox" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label prefHeight="45.0" prefWidth="148.0" text="Longueur " GridPane.rowIndex="2" />
-            <TextField fx:id="longeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="longeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt; 0.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label prefHeight="17.0" prefWidth="123.0" text="Largeur intérieure" GridPane.rowIndex="3" />
             <Label prefHeight="17.0" prefWidth="123.0" text="Hauteur intérieure" GridPane.rowIndex="4" />
-            <TextField fx:id="largeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField fx:id="hauteurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField fx:id="largeurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt; 0.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="hauteurTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt; 0.0" text="1.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Label prefHeight="17.0" prefWidth="206.0" text="Hauteur du remblai (sans couvercle)" GridPane.rowIndex="5" />
-            <TextField fx:id="hauteurRemblaiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <TextField fx:id="hauteurRemblaiTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="0.2" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="5" />
@@ -147,7 +147,7 @@
             <Label prefHeight="17.0" prefWidth="123.0" text="Type de couvercle" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="typeCouvercleChoiceBox" prefHeight="25.0" prefWidth="127.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Label prefHeight="17.0" prefWidth="123.0" text="Epaisseur du couvercle" GridPane.rowIndex="7" />
-            <TextField fx:id="epaisseurCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="14" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <TextField fx:id="epaisseurCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt; 0.0" text="14" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Label text="Chargements" GridPane.rowIndex="8">
                <font>
@@ -155,19 +155,19 @@
                </font>
             </Label>
             <Label prefHeight="17.0" prefWidth="123.0" text="Charge uniforme" GridPane.rowIndex="9" />
-            <TextField fx:id="chargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <TextField fx:id="chargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="9" />
               <Label text="daN/m²" GridPane.columnIndex="3" GridPane.rowIndex="9" />
             <Label prefHeight="17.0" prefWidth="188.0" text="Distance de la charge uniforme " GridPane.rowIndex="10" />
-            <TextField fx:id="distanceChargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <TextField fx:id="distanceChargeUniformeTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="0.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="10" />
             <Label prefHeight="17.0" prefWidth="123.0" text="Charge pontuelle" GridPane.rowIndex="11" />
-            <TextField fx:id="chargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <TextField fx:id="chargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="11" />
             <Label text="daN" GridPane.columnIndex="3" GridPane.rowIndex="11" />
             <Label prefHeight="37.0" prefWidth="201.0" text="Distance de la charge pontuelle " GridPane.rowIndex="12" />
-            <TextField fx:id="distanceChargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <TextField fx:id="distanceChargePontuelleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="2.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <Label text="m" GridPane.columnIndex="3" GridPane.rowIndex="12" />
             <Label prefHeight="17.0" prefWidth="193.0" text="Poids du couvercle caillebotis" GridPane.rowIndex="13" />
-            <TextField fx:id="poidsCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <TextField fx:id="poidsCouvercleTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 0.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="13" />
             <Label text="daN/m²" GridPane.columnIndex="3" GridPane.rowIndex="13" />
             <Label text="Type de la charge roulante" GridPane.rowIndex="14" />
                <ChoiceBox fx:id="typeChargeRoulanteChoiceBox" prefHeight="25.0" prefWidth="127.0" GridPane.columnIndex="2" GridPane.rowIndex="14" />
@@ -179,10 +179,10 @@
                <Label text="Type de la fibre" GridPane.rowIndex="16" />
                <ChoiceBox fx:id="typeFibreChoiceBox" prefHeight="25.0" prefWidth="188.0" GridPane.columnIndex="2" GridPane.rowIndex="16" />
             <Label text="Poids volumique du sol" GridPane.rowIndex="17" />
-            <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="1" text="1800" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+            <TextField fx:id="poidsVolumiqueSolTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;= 1500" text="1800" GridPane.columnIndex="2" GridPane.rowIndex="17" />
             <Label text="daN/m³" GridPane.columnIndex="3" GridPane.rowIndex="17" />
                <Label text="Angle de frottement mini" GridPane.rowIndex="18" />
-            <TextField fx:id="angleFrottementTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="30" GridPane.columnIndex="2" GridPane.rowIndex="18" />
+            <TextField fx:id="angleFrottementTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="Entre 25° et 40°" text="30" GridPane.columnIndex="2" GridPane.rowIndex="18" />
                <Label text="°" GridPane.columnIndex="3" GridPane.rowIndex="18" />
             <Label prefHeight="45.0" prefWidth="148.0" text="L" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="45.0" prefWidth="148.0" text="B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -205,10 +205,10 @@
                </font>
             </Label>
             <Label text="Epaisseur de la paroi personalisé" GridPane.rowIndex="20" />
-            <TextField fx:id="epaisseurParoiChoisieTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="20" />
+            <TextField fx:id="epaisseurParoiChoisieTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;5" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="20" />
             <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="20" />
             <Label text="Epaisseur du fond personalisé" GridPane.rowIndex="21" />
-            <TextField fx:id="epaisseurFondChoisieTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
+            <TextField fx:id="epaisseurFondChoisieTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="27.0" prefWidth="63.0" promptText="&gt;5" text="15.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
             <Label text="cm" GridPane.columnIndex="3" GridPane.rowIndex="21" />
             <Label prefHeight="45.0" prefWidth="148.0" text="eP" GridPane.columnIndex="1" GridPane.rowIndex="20" />
             <Label prefHeight="45.0" prefWidth="148.0" text="eF" GridPane.columnIndex="1" GridPane.rowIndex="21" />

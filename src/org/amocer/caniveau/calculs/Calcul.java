@@ -153,11 +153,10 @@ public class Calcul {
                                 && (momentFondELU <= momentResistantFond) && (effortTranchantFondELU <= effortTranchantResistantFond) && sectionsArmatures <sectionsArmaturesMax) {
                             renfortMini = nombreArmature == 0?"":(nombreArmature + " HA" + diametreArmature);
                             poidsFibre = dosage*volumeBeton;
-                            poidsArmatures = 8750.0*getSectionsArmatures(nombreArmature,diametreArmature)*3*longeur/10000.0;
+                            poidsArmatures = 8750.0*getSectionsArmatures(nombreArmature,diametreArmature)*2*(hauteur+largeur)*longeur/10000.0;
                             resistanceMinSol = getresistanceMinSol(epaisseurParoiChoisie, epaisseurFondChoisie);
                             joursPourLevage = getJoursPourLevagel(nomBeton, epaisseurParoiChoisie, epaisseurFondChoisie);
                             message = Message.OK.toString();
-
                             break myLabel;
                         }
                     }
@@ -228,7 +227,7 @@ public class Calcul {
 
     private double getresistanceMinSol(double epaisseurParoi, double epaisseurFond) {
         double effortVerticalELU = getEffortVerticalELU(epaisseurParoi, epaisseurFond);
-        return effortVerticalELU/largeur/1.5/10000.0;
+        return effortVerticalELU/largeur/1.5/100000.0;
     }
 
     public double getEffortVerticalELU(double epaisseurParoi, double epaisseurFond) {
