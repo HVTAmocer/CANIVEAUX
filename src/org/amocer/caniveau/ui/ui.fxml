@@ -218,7 +218,7 @@
            <columns>
                <TableColumn fx:id="typeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="58.0" style="-fx-alignment: CENTER;" text="Classe &#10;béton" />
                <TableColumn fx:id="dossageTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="52.0" text="Dosage &#10;(kg/m³)" />
-            <TableColumn fx:id="renfortMinTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="61.0" text="Renfort&#10;mini" />
+            <TableColumn fx:id="renfortMinTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="61.0" text="Renfort&#10;mini /ml" />
                <TableColumn fx:id="epaisseurMinParoiTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="96.0" text="Epaisseur mini&#10;de la paroi &#10;(cm)" />
                <TableColumn fx:id="epaisseurMinFondTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="89.0" text="Epaisseur mini &#10;du fond&#10;(cm)" />
             <TableColumn fx:id="volumeBetonTableColumn" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="91.0" text="Volume du&#10;béton/unité&#10;(m³)" />
