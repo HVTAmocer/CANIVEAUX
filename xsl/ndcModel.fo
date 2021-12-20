@@ -480,12 +480,12 @@
                   break-before="page">
           4. Principe de ferraillage </fo:block>
         <fo:block text-align="center">
-          <fo:external-graphic src="url(..//xsl/schemaFerraillage.png)"
+          <fo:external-graphic src="url(..//xsl/schemaFerraillageChoisi.png)"
                                content-width="12cm"
                                scaling="uniform"
           />
         </fo:block>
-          <fo:block start-indent="50mm"> Armatures principales : $$renfortHA$$/ml</fo:block>
+          <fo:block start-indent="50mm"> Armatures principales : $$renfortHA$$</fo:block>
 
       </fo:block>
       <fo:block id="last-page"> </fo:block>

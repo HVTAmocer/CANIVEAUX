@@ -1,10 +1,12 @@
 package org.amocer.caniveau.ui;
 
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,14 +22,15 @@ import org.amocer.caniveau.ndc.DonneesNDC;
 import org.amocer.caniveau.ndc.DonneesNDC2;
 import org.amocer.caniveau.ndc.EnregistrateurDePDFs;
 import org.amocer.caniveau.ndc.PDFHandler;
+import org.apache.commons.io.FileUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -216,6 +219,18 @@ public class Controller implements Initializable {
             FileChooser fileChooser = new FileChooser();
             // Il faut choisir une ligne du tableau
             Calcul.ResultatDuCalcul resultatDuCalcul = resultatsTableView.getSelectionModel().getSelectedItem();
+            try {
+                File dest = new File("xsl/schemaFerraillageChoisi.png");
+                if (resultatDuCalcul.epaisseurMinParoi <= 10) {
+                    File source = new File("xsl/schemaFerraillage1.png");
+                    FileUtils.copyFile(source, dest);
+                } else {
+                    File source = new File("xsl/schemaFerraillage2.png");
+                    FileUtils.copyFile(source, dest);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             //Set extension filter for text files
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
@@ -227,8 +242,32 @@ public class Controller implements Initializable {
         });
     }
 
+    private void copierImage(String nomImage) throws IOException {
+        Path source = Paths.get("resources/" + nomImage);
+        Path target = Paths.get("xsl");
+        Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
+
+
     private void exportNDC(Button button) {
-        verifier();
+        //verifier();
 
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
@@ -296,9 +335,8 @@ public class Controller implements Initializable {
                 super.updateItem(item, empty);
                 if (item == null || empty) {
                     setText(null);
-                    setStyle("");
                 }else if (item.typeResultat.equals(Calcul.TypeResultat.SANS_RENFORT)) {
-                    setStyle("-fx-background-color: azure ");
+                    this.setStyle("-fx-background-color: azure ");
                 }else if (item.typeResultat.equals(Calcul.TypeResultat.AVEC_RENFORT)) {
                     setStyle("-fx-background-color: yellow");
                 } else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEUR_MINI)) {
