@@ -59,7 +59,7 @@
                   space-before="3mm"
                   space-after="3mm">
           1.1 Contexte du projet:</fo:block>
-        <fo:block start-indent="1cm">$$contexteProjet$$ </fo:block>
+        <fo:block start-indent="1cm">Contexte : $$contexteProjet$$ </fo:block>
 
         <fo:table line-height="6mm">
           <fo:table-column column-width="70mm"/>

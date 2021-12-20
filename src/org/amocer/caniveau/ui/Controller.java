@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.amocer.caniveau.calculs.*;
@@ -255,7 +256,7 @@ public class Controller implements Initializable {
 
         // Lire des donnees
         Donnee donnee = lireDonnees();
-        Calcul calcul= new Calcul(donnee);
+        Calcul calcul = new Calcul(donnee);
 
         //calcul des resultats
         List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
@@ -282,10 +283,26 @@ public class Controller implements Initializable {
                     this.setText("OK");
                     this.setStyle("-fx-text-fill: green; -fx-font-size: 14px;-fx-font-weight: bold;");
                     //this.setStyle("-fx-background-color: green;");
-                } else if (item == Calcul.Message.PasOK.toString()){
+                } else if (item == Calcul.Message.PasOK.toString()) {
                     this.setText("NON");
                     this.setStyle("-fx-text-fill: red; -fx-font-size: 14px;-fx-font-weight: bold;");
                     //this.setStyle("-fx-background-color: red;");
+                }
+            }
+        });
+        resultatsTableView.setRowFactory(row -> new TableRow<Calcul.ResultatDuCalcul>() {
+            @Override
+            public void updateItem(Calcul.ResultatDuCalcul item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                    setStyle("");
+                }else if (item.typeResultat.equals(Calcul.TypeResultat.SANS_RENFORT)) {
+                    setStyle("-fx-background-color: azure ");
+                }else if (item.typeResultat.equals(Calcul.TypeResultat.AVEC_RENFORT)) {
+                    setStyle("-fx-background-color: yellow");
+                } else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEUR_MINI)) {
+                    setStyle("-fx-background-color: lightgrey");
                 }
             }
         });
@@ -366,7 +383,7 @@ public class Controller implements Initializable {
                             typeFibreChoiceBox.setValue(contenuDeLaLigne[8]);
                             poidsVolumiqueSolTextField.setText(contenuDeLaLigne[9]);
                             typeCaniveauChoiceBox.setValue(TypeCaniveau.valueOf(contenuDeLaLigne[10]));
-                            largeurTextField.setText(contenuDeLaLigne[10]);
+                            largeurTextField.setText(contenuDeLaLigne[11]);
                             longeurTextField.setText(contenuDeLaLigne[12]);
                             hauteurTextField.setText(contenuDeLaLigne[13]);
                             typeCouvercleChoiceBox.setValue(TypeCouvercle.valueOf(contenuDeLaLigne[14]));

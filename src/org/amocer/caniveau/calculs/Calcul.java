@@ -81,15 +81,15 @@ public class Calcul {
         double momentParoiELU = getMomentParoiELU();
         double effortTranchantParoiELU = getEffortTranchantParoiELU();
 
-        List<ResultatDuCalcul> resultatsSansArmatures = getResultatsSansArmatures(momentParoiELU, effortTranchantParoiELU);
-        List<ResultatDuCalcul> resultatsPersonalise1 = getResultatPersonalise(epaisseurParoiChoisie,epaisseurFondChoisie, momentParoiELU, effortTranchantParoiELU);
-        List<ResultatDuCalcul> resultatsPersonalise2 = getResultatPersonalise(6.0,6.0, momentParoiELU, effortTranchantParoiELU);
+        List<ResultatDuCalcul> resultatsSansArmatures = getResultatsSansArmatures(momentParoiELU, effortTranchantParoiELU,TypeResultat.SANS_RENFORT);
+        List<ResultatDuCalcul> resultatsPersonalise1 = getResultatPersonalise(epaisseurParoiChoisie,epaisseurFondChoisie, momentParoiELU, effortTranchantParoiELU,TypeResultat.AVEC_RENFORT);
+        List<ResultatDuCalcul> resultatsPersonalise2 = getResultatPersonalise(6.0,6.0, momentParoiELU, effortTranchantParoiELU,TypeResultat.EPAISSEUR_MINI);
         resultats = Stream.of(resultatsSansArmatures, resultatsPersonalise1, resultatsPersonalise2).flatMap(Collection::stream).collect(Collectors.toList());
 
         return resultats;
     }
 
-    private List<ResultatDuCalcul> getResultatsSansArmatures(double momentParoiELU, double effortTranchantParoiELU) {
+    private List<ResultatDuCalcul> getResultatsSansArmatures(double momentParoiELU, double effortTranchantParoiELU, TypeResultat typeResultat) {
         List<ResultatDuCalcul> resultats = new LinkedList<>();
         List<String> listeNomBeton = Arrays.asList("C25/30","C30/37","C40/50");
         for (String nomBeton : listeNomBeton) {
@@ -106,13 +106,13 @@ public class Calcul {
                 int joursPourLevage = getJoursPourLevagel(nomBeton, epaisseurMiniParoi, epaisseurMiniFond);
                 String renfortMini = "";
                 String message = Message.OK.toString();
-                resultats.add(new ResultatDuCalcul(nomBeton, dosage, 0, 0, renfortMini, epaisseurMiniParoi,epaisseurMiniFond,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage, message, donnee));
+                resultats.add(new ResultatDuCalcul(nomBeton, dosage, 0, 0, renfortMini, epaisseurMiniParoi,epaisseurMiniFond,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage, message,typeResultat, donnee));
             }
         }
         return resultats;
     }
 
-    public  List<ResultatDuCalcul> getResultatPersonalise(double epaisseurParoiChoisie, double epaisseurFondChoisie, double momentParoiELU, double effortTranchantParoiELU) {
+    public  List<ResultatDuCalcul> getResultatPersonalise(double epaisseurParoiChoisie, double epaisseurFondChoisie, double momentParoiELU, double effortTranchantParoiELU, TypeResultat typeResultat) {
         List<ResultatDuCalcul> resultats = new LinkedList<>();
         List<String> listeNomBeton = Arrays.asList("C25/30","C30/37","C40/50");
         for (String nomBeton : listeNomBeton) {
@@ -162,7 +162,7 @@ public class Calcul {
                     }
                 }
             }
-            resultats.add(new ResultatDuCalcul(nomBeton, dosage,nombreArmature,diametreArmature, renfortMini, epaisseurParoiChoisie,epaisseurFondChoisie,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage, message, donnee));
+            resultats.add(new ResultatDuCalcul(nomBeton, dosage,nombreArmature,diametreArmature, renfortMini, epaisseurParoiChoisie,epaisseurFondChoisie,volumeBeton,poidsFibre,poidsArmatures, resistanceMinSol, joursPourLevage, message,typeResultat, donnee));
         }
         return resultats;
     }
@@ -368,7 +368,7 @@ public class Calcul {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public EffortAgissant poussee_Terre_Fond(double epaisseurParoi) {
         double poidsSolRemblai = poidsVolumiqueSol*hauteurRemplai;
-        double poidsBeton = POIDS_VOLUMIQUE_BETON*(2*epaisseurParoi/100)*hauteur/largeur + poidsCouvercle;
+        double poidsBeton = POIDS_VOLUMIQUE_BETON*(2*epaisseurParoi/100)*(hauteur+epaisseurCouvercle)/largeur + poidsCouvercle;
         double pressionMin = poidsSolRemblai + poidsBeton;
         double pressionMax = pressionMin;
         double longeurCharge = largeur;
@@ -467,10 +467,11 @@ public class Calcul {
         public final double resistanceMinSol;
         public final double joursPourLevage;
         public final String message;
+        public final TypeResultat typeResultat;
         public Donnee donnee;
 
 
-        public ResultatDuCalcul(String typeBeton, int dossage, int nombreArmatures, int diametreArmatures, String renfortMini, double epaisseurMinParoi, double epaisseurMinFond, double volumeBeton, double poidsFibre, double poidsArmatures, double resistanceMinSol, int joursPourLevage, String message, Donnee donnee) {
+        public ResultatDuCalcul(String typeBeton, int dossage, int nombreArmatures, int diametreArmatures, String renfortMini, double epaisseurMinParoi, double epaisseurMinFond, double volumeBeton, double poidsFibre, double poidsArmatures, double resistanceMinSol, int joursPourLevage, String message,TypeResultat typeResultat, Donnee donnee) {
             this.typeBeton = typeBeton;
             this.dossage = dossage;
             this.nombreArmatures = nombreArmatures;
@@ -484,6 +485,7 @@ public class Calcul {
             this.resistanceMinSol = resistanceMinSol;
             this.joursPourLevage = joursPourLevage;
             this.message = message;
+            this.typeResultat = typeResultat;
             this.donnee = donnee;
         }
     }
@@ -500,5 +502,11 @@ public class Calcul {
         public String toString() {
             return texte;
         }
+    }
+
+    public enum TypeResultat {
+        EPAISSEUR_MINI,
+        SANS_RENFORT,
+        AVEC_RENFORT
     }
 }
