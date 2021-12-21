@@ -1,7 +1,6 @@
 package org.amocer.caniveau.calculs;
 
 import org.amocer.caniveau.calculs.math.trigoFunc;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -81,8 +80,8 @@ public class Calcul {
         double momentParoiELU = getMomentParoiELU();
         double effortTranchantParoiELU = getEffortTranchantParoiELU();
 
-        List<ResultatDuCalcul> resultatsSansArmatures = getResultatsSansArmatures(momentParoiELU, effortTranchantParoiELU,TypeResultat.SANS_RENFORT);
-        List<ResultatDuCalcul> resultatsPersonalise1 = getResultatPersonalise(epaisseurParoiChoisie,epaisseurFondChoisie, momentParoiELU, effortTranchantParoiELU,TypeResultat.AVEC_RENFORT);
+        List<ResultatDuCalcul> resultatsSansArmatures = getResultatsSansArmatures(momentParoiELU, effortTranchantParoiELU,TypeResultat.EPAISSEUR_UTILISATEUR);
+        List<ResultatDuCalcul> resultatsPersonalise1 = getResultatPersonalise(epaisseurParoiChoisie,epaisseurFondChoisie, momentParoiELU, effortTranchantParoiELU,TypeResultat.EPAISSEURS_AUTO);
         List<ResultatDuCalcul> resultatsPersonalise2 = getResultatPersonalise(6.0,6.0, momentParoiELU, effortTranchantParoiELU,TypeResultat.EPAISSEUR_MINI);
         resultats = Stream.of(resultatsSansArmatures, resultatsPersonalise1, resultatsPersonalise2).flatMap(Collection::stream).collect(Collectors.toList());
 
@@ -300,8 +299,10 @@ public class Calcul {
         }
         longeurCharge = Z2-Z1;
         double brasLevier = Math.max(0.0,hauteur + epaisseurCouvercle + hauteurRemplai - Z2 + 2.0*(Z2-Z1)/3.0);
-        double momentAgissant = forceTotale*brasLevier/Math.max(longeur,1.0);
-        double effortTranchant = brasLevier==0.0?0.0:forceTotale/Math.max(longeur,1.0);
+/*        double momentAgissant = forceTotale*brasLevier/Math.max(longeur,1.0);
+        double effortTranchant = brasLevier==0.0?0.0:forceTotale/Math.max(longeur,1.0);*/
+        double momentAgissant = forceTotale*brasLevier/2.0;
+        double effortTranchant = brasLevier==0.0?0.0:forceTotale/2.0;
         return new EffortAgissant(pressionMax,pressionMin, longeurCharge, momentAgissant, effortTranchant);
     }
 
@@ -334,11 +335,12 @@ public class Calcul {
     }
 
     public EffortAgissant poussee_ChargeRoulante_Paroi(double distanceChargeRoulante) {
-        if (longeur <= 2.0) {
+        return chargePontuelle_Paroi(chargeRoulante/2, distanceChargeRoulante);
+/*        if (longeur <= 2.0) {
             return chargePontuelle_Paroi(chargeRoulante/2, distanceChargeRoulante);
         }else {
             return chargePontuelle_Paroi(chargeRoulante, distanceChargeRoulante);
-        }
+        }*/
     }
 
     public EffortAgissant poussee_ChargeRoulante_Paroi_Max() {
@@ -470,8 +472,13 @@ public class Calcul {
         public final TypeResultat typeResultat;
         public Donnee donnee;
 
-
         public ResultatDuCalcul(String typeBeton, int dossage, int nombreArmatures, int diametreArmatures, String renfortMini, double epaisseurMinParoi, double epaisseurMinFond, double volumeBeton, double poidsFibre, double poidsArmatures, double resistanceMinSol, int joursPourLevage, String message,TypeResultat typeResultat, Donnee donnee) {
+            if(message.equals(Message.PasOK.toString())){
+                poidsArmatures=Double.POSITIVE_INFINITY;
+                poidsFibre=Double.POSITIVE_INFINITY;
+                renfortMini="∞";
+            }
+
             this.typeBeton = typeBeton;
             this.dossage = dossage;
             this.nombreArmatures = nombreArmatures;
@@ -488,6 +495,8 @@ public class Calcul {
             this.typeResultat = typeResultat;
             this.donnee = donnee;
         }
+
+
     }
 
     public enum Message {
@@ -505,8 +514,8 @@ public class Calcul {
     }
 
     public enum TypeResultat {
+        EPAISSEURS_AUTO,
         EPAISSEUR_MINI,
-        SANS_RENFORT,
-        AVEC_RENFORT
+        EPAISSEUR_UTILISATEUR
     }
 }

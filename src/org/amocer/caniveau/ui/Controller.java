@@ -1,13 +1,10 @@
 package org.amocer.caniveau.ui;
 
 import javafx.application.Platform;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.amocer.caniveau.calculs.*;
@@ -28,11 +25,9 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Controller implements Initializable {
     @FXML
@@ -219,52 +214,36 @@ public class Controller implements Initializable {
             FileChooser fileChooser = new FileChooser();
             // Il faut choisir une ligne du tableau
             Calcul.ResultatDuCalcul resultatDuCalcul = resultatsTableView.getSelectionModel().getSelectedItem();
-            try {
-                File dest = new File("xsl/schemaFerraillageChoisi.png");
-                if (resultatDuCalcul.epaisseurMinParoi <= 10) {
-                    File source = new File("xsl/schemaFerraillage1.png");
-                    FileUtils.copyFile(source, dest);
-                } else {
-                    File source = new File("xsl/schemaFerraillage2.png");
-                    FileUtils.copyFile(source, dest);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if(resultatDuCalcul != null) {
+                // creer le plan de ferraillage
+                copierImage(resultatDuCalcul);
+
+                //Set extension filter for text files
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
+                fileChooser.getExtensionFilters().add(extFilter);
+
+                //Show save file dialog
+                File file = fileChooser.showSaveDialog(imprimerNDCButton.getScene().getWindow());
+                EnregistrateurDePDFs.enregistrerPDF(new DonneesNDC(resultatDuCalcul), new File("xsl/ndcModel.fo"), file, "$$");
             }
-
-            //Set extension filter for text files
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichier PDF (*.pdf)", "*.pdf");
-            fileChooser.getExtensionFilters().add(extFilter);
-
-            //Show save file dialog
-            File file = fileChooser.showSaveDialog(imprimerNDCButton.getScene().getWindow());
-            EnregistrateurDePDFs.enregistrerPDF(new DonneesNDC(resultatDuCalcul), new File("xsl/ndcModel.fo"), file, "$$");
         });
     }
 
-    private void copierImage(String nomImage) throws IOException {
-        Path source = Paths.get("resources/" + nomImage);
-        Path target = Paths.get("xsl");
-        Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-    }
-
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
+    private void copierImage(Calcul.ResultatDuCalcul resultatDuCalcul)  {
         try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
+            File dest = new File("xsl/schemaFerraillageChoisi.png");
+            if (resultatDuCalcul.epaisseurMinParoi <= 10) {
+                File source = new File("xsl/schemaFerraillage1.png");
+                FileUtils.copyFile(source, dest);
+            } else {
+                File source = new File("xsl/schemaFerraillage2.png");
+                FileUtils.copyFile(source, dest);
             }
-        } finally {
-            is.close();
-            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 
     private void exportNDC(Button button) {
         //verifier();
@@ -298,7 +277,9 @@ public class Controller implements Initializable {
         Calcul calcul = new Calcul(donnee);
 
         //calcul des resultats
-        List<Calcul.ResultatDuCalcul> resultats = calcul.calculer();
+        List<Calcul.ResultatDuCalcul> resultats = calcul.calculer().stream()
+                .sorted(Comparator.comparing(r->r.typeResultat))
+                .collect(Collectors.toList());
 
         //Affichage des resultats
         resultatsTableView.setItems(FXCollections.observableList(resultats));
@@ -333,12 +314,17 @@ public class Controller implements Initializable {
             @Override
             public void updateItem(Calcul.ResultatDuCalcul item, boolean empty) {
                 super.updateItem(item, empty);
+                if(isSelected()) {
+                    setStyle("");
+                    return;
+                }
                 if (item == null || empty) {
                     setText(null);
-                }else if (item.typeResultat.equals(Calcul.TypeResultat.SANS_RENFORT)) {
-                    this.setStyle("-fx-background-color: azure ");
-                }else if (item.typeResultat.equals(Calcul.TypeResultat.AVEC_RENFORT)) {
-                    setStyle("-fx-background-color: yellow");
+                }else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEUR_UTILISATEUR)) {
+                    this.setStyle("-fx-background-color: lightgreen;");
+                    //this.setStyle("-fx-background-color: lightgreen; -fx-selection-bar: red;-fx-selection-bar-text : black;");
+                }else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEURS_AUTO)) {
+                    setStyle("-fx-background-color: orange");
                 } else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEUR_MINI)) {
                     setStyle("-fx-background-color: lightgrey");
                 }

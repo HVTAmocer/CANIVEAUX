@@ -2,7 +2,6 @@
     -fx-alignment:center;
 }
 
-
 .column.table-cell {
     -fx-background-color: red;
 }
@@ -11,10 +10,9 @@
   -fx-alignment: CENTER;
 }
 
-.red{
-    -fx-background-color:red;
-}
-
-.white{
-    -fx-background-color:white;
-}
+/*
+.table-view {
+     -fx-selection-bar : red ;
+     -fx-selection-bar-text : red ;
+ }
+*/
