@@ -16,3 +16,7 @@
      -fx-selection-bar-text : red ;
  }
 */
+
+.table-cell:focused{
+    -fx-background-color: green;
+}

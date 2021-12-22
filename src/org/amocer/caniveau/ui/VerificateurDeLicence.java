@@ -11,10 +11,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.security.Security;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class VerificateurDeLicence {
-    private static final String HASH_SALT = "1234";
+    private static final String HASH_SALT = "12345";
     public static final String EULA_FILE = "eula.txt";
     public static final String LICENCE_FILE = "licence.lic";
 
@@ -105,6 +106,10 @@ public class VerificateurDeLicence {
 
 
     public static void main(String[] args) {
-        System.out.println(codeDeDeblocage(args[0]));
+        System.out.println("Code de licence non-valide:\n");
+        Scanner in = new Scanner(System.in);
+        String codeNonValide = in.nextLine();
+        System.out.println("Code de licence valide:\n");
+        System.out.println(codeDeDeblocage(codeNonValide));
     }
 }

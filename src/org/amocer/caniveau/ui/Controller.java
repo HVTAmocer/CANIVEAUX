@@ -1,10 +1,12 @@
 package org.amocer.caniveau.ui;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BackgroundFill;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.amocer.caniveau.calculs.*;
@@ -314,10 +316,12 @@ public class Controller implements Initializable {
             @Override
             public void updateItem(Calcul.ResultatDuCalcul item, boolean empty) {
                 super.updateItem(item, empty);
-                if(isSelected()) {
+/*                Calcul.ResultatDuCalcul selectedRow = resultatsTableView.getSelectionModel().getSelectedItem();
+                if(item!=null&&item.equals(selectedRow)) {
                     setStyle("");
+                    resultatsTableView.refresh();
                     return;
-                }
+                }*/
                 if (item == null || empty) {
                     setText(null);
                 }else if (item.typeResultat.equals(Calcul.TypeResultat.EPAISSEUR_UTILISATEUR)) {
